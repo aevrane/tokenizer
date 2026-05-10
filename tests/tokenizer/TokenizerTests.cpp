@@ -225,6 +225,8 @@ void RunTrainingFixtureTest()
         "Tokenizer sample report should include attribution category.");
     AssertTrue(artifacts.samplesText.find("[ws]The") != std::string::npos,
         "Tokenizer sample report should render SentencePiece whitespace pieces with ASCII-safe markers.");
+    AssertTrue(artifacts.samplesText.find("\xC3\xA2\xE2\x80\x93") == std::string::npos,
+        "Tokenizer sample report should not leak mojibake whitespace markers.");
     AssertTrue(artifacts.manifestText.find("\"kind\": \"parquet_corpus_text\"") != std::string::npos,
         "Tokenizer manifest should record the shard corpus input kind.");
     AssertTrue(artifacts.manifestText.find("\"kind\": \"supplemental_corpus_text\"") != std::string::npos,
