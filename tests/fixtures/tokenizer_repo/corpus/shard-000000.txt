@@ -1,0 +1,2 @@
+Neutral prose improves tokenizer coverage for descriptive language.
+The shell should preserve uncertainty when the evidence is limited.
