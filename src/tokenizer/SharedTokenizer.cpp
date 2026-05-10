@@ -24,6 +24,18 @@ std::string ReplaceAll(std::string value, const std::string& needle, const std::
     return value;
 }
 
+std::string NormalizeVisibleWhitespaceMarkers(std::string value)
+{
+    value = ReplaceAll(value, "\xE2\x96\x81", "[ws]");
+
+    // Common mojibake forms for the SentencePiece whitespace marker when UTF-8
+    // bytes are interpreted through a Windows codepage path before being shown.
+    value = ReplaceAll(value, "\xC3\xA2\xE2\x80\x93\xC2\x81", "[ws]");
+    value = ReplaceAll(value, "\xC3\xA2\xE2\x80\x93", "[ws]");
+
+    return value;
+}
+
 std::vector<std::string> SplitTabLine(const std::string& line)
 {
     std::vector<std::string> fields;
@@ -465,7 +477,7 @@ std::string SharedTokenizer::DecodeHex(const std::string& value)
 
 std::string SharedTokenizer::EscapeVisible(const std::string& value)
 {
-    std::string escaped = ReplaceAll(value, "\xE2\x96\x81", "[ws]");
+    std::string escaped = NormalizeVisibleWhitespaceMarkers(value);
     std::ostringstream stream;
 
     for (unsigned char character : escaped)
