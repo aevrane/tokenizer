@@ -2,7 +2,7 @@
 
 ## Purpose
 
-`C:\MINA\tokenizer` is a standalone shared-tokenizer project for multiple MINA shell consumers.
+`C:\Tokenizer` is a standalone shared-tokenizer project.
 
 It provides three main capabilities:
 
@@ -17,26 +17,26 @@ The intended usage pattern is:
 3. scan or rescan the shard corpus into a reusable cache index
 4. train one shared tokenizer from that indexed corpus plus reviewed project text
 5. inspect the resulting tokenizer artifacts and reports
-6. load the same model artifact in every shell track
+6. load the same model artifact in every consumer
 
 ## Project Layout
 
 Important directories:
 
-- `C:\MINA\tokenizer\src`
-- `C:\MINA\tokenizer\include`
-- `C:\MINA\tokenizer\docs`
-- `C:\MINA\tokenizer\tests`
-- `C:\MINA\tokenizer\exports\tokenizer\parquet_corpus`
-- `C:\MINA\tokenizer\manifests\tokenizer`
-- `C:\MINA\tokenizer\reports\tokenizer`
+- `C:\Tokenizer\src`
+- `C:\Tokenizer\include`
+- `C:\Tokenizer\docs`
+- `C:\Tokenizer\tests`
+- `C:\Tokenizer\exports\tokenizer\parquet_corpus`
+- `C:\Tokenizer\manifests\tokenizer`
+- `C:\Tokenizer\reports\tokenizer`
 
 Important executables after a Debug build:
 
-- `C:\MINA\tokenizer\build\Debug\tokenizer_parquet_ingest_tool.exe`
-- `C:\MINA\tokenizer\build\Debug\tokenizer_train_tool.exe`
-- `C:\MINA\tokenizer\build\Debug\tokenizer_inspect_tool.exe`
-- `C:\MINA\tokenizer\build\Debug\tokenizer_tests.exe`
+- `C:\Tokenizer\build\Debug\tokenizer_parquet_ingest_tool.exe`
+- `C:\Tokenizer\build\Debug\tokenizer_train_tool.exe`
+- `C:\Tokenizer\build\Debug\tokenizer_inspect_tool.exe`
+- `C:\Tokenizer\build\Debug\tokenizer_tests.exe`
 
 ## Dependencies
 
@@ -50,7 +50,7 @@ Required dependencies:
 Install dependencies:
 
 ```text
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\vcpkg\vcpkg.exe install --x-manifest-root=C:\MINA\tokenizer --triplet x64-windows
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\vcpkg\vcpkg.exe install --x-manifest-root=C:\Tokenizer --triplet x64-windows
 ```
 
 ## Build
@@ -58,20 +58,20 @@ C:\Program Files\Microsoft Visual Studio\2022\Community\VC\vcpkg\vcpkg.exe insta
 Configure:
 
 ```text
-C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe -S C:\MINA\tokenizer -B C:\MINA\tokenizer\build -G "Visual Studio 17 2022" -DCMAKE_TOOLCHAIN_FILE="C:\Program Files\Microsoft Visual Studio\2022\Community\VC\vcpkg\scripts\buildsystems\vcpkg.cmake" -DCMAKE_PREFIX_PATH="C:\MINA\tokenizer\vcpkg_installed\x64-windows"
+C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe -S C:\Tokenizer -B C:\Tokenizer\build -G "Visual Studio 17 2022" -DCMAKE_TOOLCHAIN_FILE="C:\Program Files\Microsoft Visual Studio\2022\Community\VC\vcpkg\scripts\buildsystems\vcpkg.cmake" -DCMAKE_PREFIX_PATH="C:\Tokenizer\vcpkg_installed\x64-windows"
 ```
 
 Build:
 
 ```text
-C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe --build C:\MINA\tokenizer\build --config Debug
+C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe --build C:\Tokenizer\build --config Debug
 ```
 
 Run tests:
 
 ```text
-$env:PATH = "C:\MINA\tokenizer\build\Debug;C:\MINA\tokenizer\vcpkg_installed\x64-windows\debug\bin;C:\MINA\tokenizer\vcpkg_installed\x64-windows\bin;" + $env:PATH
-C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\ctest.exe --test-dir C:\MINA\tokenizer\build -C Debug --output-on-failure
+$env:PATH = "C:\Tokenizer\build\Debug;C:\Tokenizer\vcpkg_installed\x64-windows\debug\bin;C:\Tokenizer\vcpkg_installed\x64-windows\bin;" + $env:PATH
+C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\ctest.exe --test-dir C:\Tokenizer\build -C Debug --output-on-failure
 ```
 
 ## Runtime DLL Setup
@@ -79,13 +79,13 @@ C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtens
 If you run the executables manually in PowerShell, set:
 
 ```text
-$env:PATH = "C:\MINA\tokenizer\build\Debug;C:\MINA\tokenizer\vcpkg_installed\x64-windows\debug\bin;C:\MINA\tokenizer\vcpkg_installed\x64-windows\bin;" + $env:PATH
+$env:PATH = "C:\Tokenizer\build\Debug;C:\Tokenizer\vcpkg_installed\x64-windows\debug\bin;C:\Tokenizer\vcpkg_installed\x64-windows\bin;" + $env:PATH
 ```
 
 If you run them manually in `cmd.exe`, set:
 
 ```text
-set PATH=C:\MINA\tokenizer\build\Debug;C:\MINA\tokenizer\vcpkg_installed\x64-windows\debug\bin;C:\MINA\tokenizer\vcpkg_installed\x64-windows\bin;%PATH%
+set PATH=C:\Tokenizer\build\Debug;C:\Tokenizer\vcpkg_installed\x64-windows\debug\bin;C:\Tokenizer\vcpkg_installed\x64-windows\bin;%PATH%
 ```
 
 ## High-Level Workflow
@@ -101,11 +101,11 @@ Typical full workflow:
 Minimal real workflow example:
 
 ```text
-$env:PATH = "C:\MINA\tokenizer\build\Debug;C:\MINA\tokenizer\vcpkg_installed\x64-windows\debug\bin;C:\MINA\tokenizer\vcpkg_installed\x64-windows\bin;" + $env:PATH
-C:\MINA\tokenizer\build\Debug\tokenizer_parquet_ingest_tool.exe --parquet-root C:\MINA\datasets --output-root C:\MINA\tokenizer
-C:\MINA\tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\Sources\MINA-Codex --dataset-root C:\MINA\datasets --output-root C:\MINA\tokenizer --corpus-root D:\CorpusShards --scan-only
-C:\MINA\tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\Sources\MINA-Codex --dataset-root C:\MINA\datasets --output-root C:\MINA\tokenizer --corpus-root D:\CorpusShards
-C:\MINA\tokenizer\build\Debug\tokenizer_inspect_tool.exe --model-path C:\MINA\tokenizer\manifests\tokenizer\shared_tokenizer.model --text "The available inputs do not provide enough evidence, so the shell should preserve uncertainty."
+$env:PATH = "C:\Tokenizer\build\Debug;C:\Tokenizer\vcpkg_installed\x64-windows\debug\bin;C:\Tokenizer\vcpkg_installed\x64-windows\bin;" + $env:PATH
+C:\Tokenizer\build\Debug\tokenizer_parquet_ingest_tool.exe --parquet-root C:\Datasets --output-root C:\Tokenizer
+C:\Tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\SourceRepo --dataset-root C:\Datasets --output-root C:\Tokenizer --corpus-root C:\CorpusShards --scan-only
+C:\Tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\SourceRepo --dataset-root C:\Datasets --output-root C:\Tokenizer --corpus-root C:\CorpusShards
+C:\Tokenizer\build\Debug\tokenizer_inspect_tool.exe --model-path C:\Tokenizer\manifests\tokenizer\shared_tokenizer.model --text "The available inputs do not provide enough evidence, so the shell should preserve uncertainty."
 ```
 
 ## Parquet Ingestion
@@ -125,8 +125,8 @@ C:\MINA\tokenizer\build\Debug\tokenizer_inspect_tool.exe --model-path C:\MINA\to
 
 Parquet ingester defaults:
 
-- parquet root: `C:\MINA\datasets`
-- output root: `C:\MINA\tokenizer`
+- parquet root: `C:\Datasets`
+- output root: `C:\Tokenizer`
 
 Generated output paths under the output root:
 
@@ -156,8 +156,8 @@ tokenizer_parquet_ingest_tool --parquet-root <path> [--output-root <path>] [--te
 ### Full Ingest Example
 
 ```text
-$env:PATH = "C:\MINA\tokenizer\build\Debug;C:\MINA\tokenizer\vcpkg_installed\x64-windows\debug\bin;C:\MINA\tokenizer\vcpkg_installed\x64-windows\bin;" + $env:PATH
-C:\MINA\tokenizer\build\Debug\tokenizer_parquet_ingest_tool.exe --parquet-root C:\MINA\datasets --output-root C:\MINA\tokenizer --batch-size 65536 --shard-size-mb 256
+$env:PATH = "C:\Tokenizer\build\Debug;C:\Tokenizer\vcpkg_installed\x64-windows\debug\bin;C:\Tokenizer\vcpkg_installed\x64-windows\bin;" + $env:PATH
+C:\Tokenizer\build\Debug\tokenizer_parquet_ingest_tool.exe --parquet-root C:\Datasets --output-root C:\Tokenizer --batch-size 65536 --shard-size-mb 256
 ```
 
 ### Every Ingest Flag
@@ -169,7 +169,7 @@ C:\MINA\tokenizer\build\Debug\tokenizer_parquet_ingest_tool.exe --parquet-root C
 - example:
 
 ```text
-C:\MINA\tokenizer\build\Debug\tokenizer_parquet_ingest_tool.exe --parquet-root D:\FilteredParquet
+C:\Tokenizer\build\Debug\tokenizer_parquet_ingest_tool.exe --parquet-root D:\FilteredParquet
 ```
 
 `--output-root <path>`
@@ -178,7 +178,7 @@ C:\MINA\tokenizer\build\Debug\tokenizer_parquet_ingest_tool.exe --parquet-root D
 - example:
 
 ```text
-C:\MINA\tokenizer\build\Debug\tokenizer_parquet_ingest_tool.exe --parquet-root C:\MINA\datasets --output-root D:\TokenizerWorkspace
+C:\Tokenizer\build\Debug\tokenizer_parquet_ingest_tool.exe --parquet-root C:\Datasets --output-root D:\TokenizerWorkspace
 ```
 
 `--text-column <name>`
@@ -187,7 +187,7 @@ C:\MINA\tokenizer\build\Debug\tokenizer_parquet_ingest_tool.exe --parquet-root C
 - example:
 
 ```text
-C:\MINA\tokenizer\build\Debug\tokenizer_parquet_ingest_tool.exe --parquet-root C:\MINA\datasets --text-column text
+C:\Tokenizer\build\Debug\tokenizer_parquet_ingest_tool.exe --parquet-root C:\Datasets --text-column text
 ```
 
 `--batch-size <rows>`
@@ -198,7 +198,7 @@ C:\MINA\tokenizer\build\Debug\tokenizer_parquet_ingest_tool.exe --parquet-root C
 - example:
 
 ```text
-C:\MINA\tokenizer\build\Debug\tokenizer_parquet_ingest_tool.exe --parquet-root C:\MINA\datasets --batch-size 32768
+C:\Tokenizer\build\Debug\tokenizer_parquet_ingest_tool.exe --parquet-root C:\Datasets --batch-size 32768
 ```
 
 `--shard-size-mb <megabytes>`
@@ -207,7 +207,7 @@ C:\MINA\tokenizer\build\Debug\tokenizer_parquet_ingest_tool.exe --parquet-root C
 - example:
 
 ```text
-C:\MINA\tokenizer\build\Debug\tokenizer_parquet_ingest_tool.exe --parquet-root C:\MINA\datasets --shard-size-mb 512
+C:\Tokenizer\build\Debug\tokenizer_parquet_ingest_tool.exe --parquet-root C:\Datasets --shard-size-mb 512
 ```
 
 `--no-resume`
@@ -216,7 +216,7 @@ C:\MINA\tokenizer\build\Debug\tokenizer_parquet_ingest_tool.exe --parquet-root C
 - example:
 
 ```text
-C:\MINA\tokenizer\build\Debug\tokenizer_parquet_ingest_tool.exe --parquet-root C:\MINA\datasets --no-resume
+C:\Tokenizer\build\Debug\tokenizer_parquet_ingest_tool.exe --parquet-root C:\Datasets --no-resume
 ```
 
 `--flat`
@@ -226,7 +226,7 @@ C:\MINA\tokenizer\build\Debug\tokenizer_parquet_ingest_tool.exe --parquet-root C
 - example:
 
 ```text
-C:\MINA\tokenizer\build\Debug\tokenizer_parquet_ingest_tool.exe --parquet-root C:\MINA\datasets --flat
+C:\Tokenizer\build\Debug\tokenizer_parquet_ingest_tool.exe --parquet-root C:\Datasets --flat
 ```
 
 `--stop-on-file-error`
@@ -236,7 +236,7 @@ C:\MINA\tokenizer\build\Debug\tokenizer_parquet_ingest_tool.exe --parquet-root C
 - example:
 
 ```text
-C:\MINA\tokenizer\build\Debug\tokenizer_parquet_ingest_tool.exe --parquet-root C:\MINA\datasets --stop-on-file-error
+C:\Tokenizer\build\Debug\tokenizer_parquet_ingest_tool.exe --parquet-root C:\Datasets --stop-on-file-error
 ```
 
 `--max-files <count>`
@@ -246,7 +246,7 @@ C:\MINA\tokenizer\build\Debug\tokenizer_parquet_ingest_tool.exe --parquet-root C
 - example:
 
 ```text
-C:\MINA\tokenizer\build\Debug\tokenizer_parquet_ingest_tool.exe --parquet-root C:\MINA\datasets --max-files 2
+C:\Tokenizer\build\Debug\tokenizer_parquet_ingest_tool.exe --parquet-root C:\Datasets --max-files 2
 ```
 
 `--max-batches <count>`
@@ -256,7 +256,7 @@ C:\MINA\tokenizer\build\Debug\tokenizer_parquet_ingest_tool.exe --parquet-root C
 - example:
 
 ```text
-C:\MINA\tokenizer\build\Debug\tokenizer_parquet_ingest_tool.exe --parquet-root C:\MINA\datasets --max-batches 10
+C:\Tokenizer\build\Debug\tokenizer_parquet_ingest_tool.exe --parquet-root C:\Datasets --max-batches 10
 ```
 
 ### Stop And Resume Behavior
@@ -278,23 +278,23 @@ On resume:
 Resume example:
 
 ```text
-C:\MINA\tokenizer\build\Debug\tokenizer_parquet_ingest_tool.exe --parquet-root C:\MINA\datasets --output-root C:\MINA\tokenizer
+C:\Tokenizer\build\Debug\tokenizer_parquet_ingest_tool.exe --parquet-root C:\Datasets --output-root C:\Tokenizer
 ```
 
 ### How To Inspect Ingest Progress
 
 ```text
-Get-Content C:\MINA\tokenizer\manifests\tokenizer\parquet_ingest_progress.json
-Get-Content C:\MINA\tokenizer\reports\tokenizer\parquet_ingest_log.md -Tail 50 -Wait
-Get-Content C:\MINA\tokenizer\manifests\tokenizer\parquet_ingest_files.tsv
+Get-Content C:\Tokenizer\manifests\tokenizer\parquet_ingest_progress.json
+Get-Content C:\Tokenizer\reports\tokenizer\parquet_ingest_log.md -Tail 50 -Wait
+Get-Content C:\Tokenizer\manifests\tokenizer\parquet_ingest_files.tsv
 ```
 
 ### How To Inspect Final Ingest Outputs
 
 ```text
-Get-Content C:\MINA\tokenizer\manifests\tokenizer\parquet_ingest_manifest.json
-Get-Content C:\MINA\tokenizer\reports\tokenizer\parquet_ingest_report.md
-Get-ChildItem C:\MINA\tokenizer\exports\tokenizer\parquet_corpus
+Get-Content C:\Tokenizer\manifests\tokenizer\parquet_ingest_manifest.json
+Get-Content C:\Tokenizer\reports\tokenizer\parquet_ingest_report.md
+Get-ChildItem C:\Tokenizer\exports\tokenizer\parquet_corpus
 ```
 
 ## Shard Files And Supplemental Files
@@ -317,7 +317,7 @@ Supplemental files are corpus `.txt` files whose names begin with:
 
 Examples:
 
-- `supplemental-conversations_with_kevin_deegan.txt`
+- `supplemental-conversations.txt`
 - `supplemental-domain-glossary.txt`
 - `supplemental-policy-language.txt`
 
@@ -330,9 +330,9 @@ Supplemental behavior:
 Example placement:
 
 ```text
-D:\CorpusShards\shard-000000.txt
-D:\CorpusShards\shard-000001.txt
-D:\CorpusShards\supplemental-conversations_with_kevin_deegan.txt
+C:\CorpusShards\shard-000000.txt
+C:\CorpusShards\shard-000001.txt
+C:\CorpusShards\supplemental-conversations.txt
 ```
 
 ## Tokenizer Training
@@ -376,7 +376,7 @@ This creates or refreshes the corpus cache index and exits before training.
 Example:
 
 ```text
-C:\MINA\tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\Sources\MINA-Codex --dataset-root C:\MINA\datasets --output-root C:\MINA\tokenizer --corpus-root D:\CorpusShards --scan-only
+C:\Tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\SourceRepo --dataset-root C:\Datasets --output-root C:\Tokenizer --corpus-root C:\CorpusShards --scan-only
 ```
 
 ### Train From Existing Index
@@ -386,7 +386,7 @@ If the cached index is still valid, the trainer reuses it automatically.
 Example:
 
 ```text
-C:\MINA\tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\Sources\MINA-Codex --dataset-root C:\MINA\datasets --output-root C:\MINA\tokenizer --corpus-root D:\CorpusShards
+C:\Tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\SourceRepo --dataset-root C:\Datasets --output-root C:\Tokenizer --corpus-root C:\CorpusShards
 ```
 
 ### Force A Rescan Before Training
@@ -394,7 +394,7 @@ C:\MINA\tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\Sou
 Example:
 
 ```text
-C:\MINA\tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\Sources\MINA-Codex --dataset-root C:\MINA\datasets --output-root C:\MINA\tokenizer --corpus-root D:\CorpusShards --force-rescan
+C:\Tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\SourceRepo --dataset-root C:\Datasets --output-root C:\Tokenizer --corpus-root C:\CorpusShards --force-rescan
 ```
 
 ### Legacy Positional Form
@@ -402,7 +402,7 @@ C:\MINA\tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\Sou
 Legacy positional form is still supported:
 
 ```text
-C:\MINA\tokenizer\build\Debug\tokenizer_train_tool.exe C:\Sources\MINA-Codex C:\MINA\datasets 32000 C:\MINA\tokenizer D:\CorpusShards
+C:\Tokenizer\build\Debug\tokenizer_train_tool.exe C:\SourceRepo C:\Datasets 32000 C:\Tokenizer C:\CorpusShards
 ```
 
 This form is shorter, but the named-flag form is recommended for clarity and future publishing.
@@ -410,8 +410,8 @@ This form is shorter, but the named-flag form is recommended for clarity and fut
 ### Full Training Example
 
 ```text
-$env:PATH = "C:\MINA\tokenizer\build\Debug;C:\MINA\tokenizer\vcpkg_installed\x64-windows\debug\bin;C:\MINA\tokenizer\vcpkg_installed\x64-windows\bin;" + $env:PATH
-C:\MINA\tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\Sources\MINA-Codex --dataset-root C:\MINA\datasets --output-root C:\MINA\tokenizer --corpus-root D:\CorpusShards --vocab-size 32000
+$env:PATH = "C:\Tokenizer\build\Debug;C:\Tokenizer\vcpkg_installed\x64-windows\debug\bin;C:\Tokenizer\vcpkg_installed\x64-windows\bin;" + $env:PATH
+C:\Tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\SourceRepo --dataset-root C:\Datasets --output-root C:\Tokenizer --corpus-root C:\CorpusShards --vocab-size 32000
 ```
 
 ### Every Training Flag
@@ -425,7 +425,7 @@ C:\MINA\tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\Sou
 - example:
 
 ```text
-C:\MINA\tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\Sources\MINA-Codex
+C:\Tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\SourceRepo
 ```
 
 `--dataset-root <path>`
@@ -435,7 +435,7 @@ C:\MINA\tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\Sou
 - example:
 
 ```text
-C:\MINA\tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\Sources\MINA-Codex --dataset-root D:\ArchivedDatasets
+C:\Tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\SourceRepo --dataset-root D:\ArchivedDatasets
 ```
 
 `--output-root <path>`
@@ -444,7 +444,7 @@ C:\MINA\tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\Sou
 - example:
 
 ```text
-C:\MINA\tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\Sources\MINA-Codex --output-root D:\TokenizerRun
+C:\Tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\SourceRepo --output-root D:\TokenizerRun
 ```
 
 `--corpus-root <path>`
@@ -453,7 +453,7 @@ C:\MINA\tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\Sou
 - example:
 
 ```text
-C:\MINA\tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\Sources\MINA-Codex --corpus-root D:\CorpusShards
+C:\Tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\SourceRepo --corpus-root C:\CorpusShards
 ```
 
 `--index-path <path>`
@@ -462,7 +462,7 @@ C:\MINA\tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\Sou
 - example:
 
 ```text
-C:\MINA\tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\Sources\MINA-Codex --corpus-root D:\CorpusShards --index-path D:\TokenizerState\corpus_index.tsv --scan-only
+C:\Tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\SourceRepo --corpus-root C:\CorpusShards --index-path D:\TokenizerState\corpus_index.tsv --scan-only
 ```
 
 `--vocab-size <count>`
@@ -471,7 +471,7 @@ C:\MINA\tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\Sou
 - example:
 
 ```text
-C:\MINA\tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\Sources\MINA-Codex --vocab-size 24000
+C:\Tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\SourceRepo --vocab-size 24000
 ```
 
 `--sampled-sentence-count <count>`
@@ -480,7 +480,7 @@ C:\MINA\tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\Sou
 - example:
 
 ```text
-C:\MINA\tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\Sources\MINA-Codex --sampled-sentence-count 8000000
+C:\Tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\SourceRepo --sampled-sentence-count 8000000
 ```
 
 `--max-piece-length <count>`
@@ -489,7 +489,7 @@ C:\MINA\tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\Sou
 - example:
 
 ```text
-C:\MINA\tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\Sources\MINA-Codex --max-piece-length 32
+C:\Tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\SourceRepo --max-piece-length 32
 ```
 
 `--max-sentence-length <count>`
@@ -498,7 +498,7 @@ C:\MINA\tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\Sou
 - example:
 
 ```text
-C:\MINA\tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\Sources\MINA-Codex --max-sentence-length 20000
+C:\Tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\SourceRepo --max-sentence-length 20000
 ```
 
 #### Reviewed Export Weights
@@ -509,7 +509,7 @@ C:\MINA\tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\Sou
 - example:
 
 ```text
-C:\MINA\tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\Sources\MINA-Codex --parquet-weight 1
+C:\Tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\SourceRepo --parquet-weight 1
 ```
 
 `--base-training-output-weight <count>`
@@ -518,7 +518,7 @@ C:\MINA\tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\Sou
 - example:
 
 ```text
-C:\MINA\tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\Sources\MINA-Codex --base-training-output-weight 3
+C:\Tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\SourceRepo --base-training-output-weight 3
 ```
 
 `--contextualization-input-weight <count>`
@@ -527,7 +527,7 @@ C:\MINA\tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\Sou
 - example:
 
 ```text
-C:\MINA\tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\Sources\MINA-Codex --contextualization-input-weight 2
+C:\Tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\SourceRepo --contextualization-input-weight 2
 ```
 
 `--contextualization-output-weight <count>`
@@ -536,7 +536,7 @@ C:\MINA\tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\Sou
 - example:
 
 ```text
-C:\MINA\tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\Sources\MINA-Codex --contextualization-output-weight 3
+C:\Tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\SourceRepo --contextualization-output-weight 3
 ```
 
 `--custom-verbalization-input-weight <count>`
@@ -545,7 +545,7 @@ C:\MINA\tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\Sou
 - example:
 
 ```text
-C:\MINA\tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\Sources\MINA-Codex --custom-verbalization-input-weight 2
+C:\Tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\SourceRepo --custom-verbalization-input-weight 2
 ```
 
 `--custom-verbalization-output-weight <count>`
@@ -554,7 +554,7 @@ C:\MINA\tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\Sou
 - example:
 
 ```text
-C:\MINA\tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\Sources\MINA-Codex --custom-verbalization-output-weight 4
+C:\Tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\SourceRepo --custom-verbalization-output-weight 4
 ```
 
 `--small-supervised-output-weight <count>`
@@ -563,7 +563,7 @@ C:\MINA\tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\Sou
 - example:
 
 ```text
-C:\MINA\tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\Sources\MINA-Codex --small-supervised-output-weight 3
+C:\Tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\SourceRepo --small-supervised-output-weight 3
 ```
 
 #### Progress, Logging, And Debug
@@ -574,7 +574,7 @@ C:\MINA\tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\Sou
 - example:
 
 ```text
-C:\MINA\tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\Sources\MINA-Codex --progress-every-lines 500000
+C:\Tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\SourceRepo --progress-every-lines 500000
 ```
 
 `--verbose-trainer`
@@ -583,7 +583,7 @@ C:\MINA\tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\Sou
 - example:
 
 ```text
-C:\MINA\tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\Sources\MINA-Codex --verbose-trainer
+C:\Tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\SourceRepo --verbose-trainer
 ```
 
 `--quiet-trainer`
@@ -592,16 +592,16 @@ C:\MINA\tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\Sou
 - example:
 
 ```text
-C:\MINA\tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\Sources\MINA-Codex --quiet-trainer
+C:\Tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\SourceRepo --quiet-trainer
 ```
 
 `--no-heartbeat`
 
-- disables the once-per-minute “still running” training heartbeat during the SentencePiece phase
+- disables the once-per-minute "still running" training heartbeat during the SentencePiece phase
 - example:
 
 ```text
-C:\MINA\tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\Sources\MINA-Codex --no-heartbeat
+C:\Tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\SourceRepo --no-heartbeat
 ```
 
 `--scan-only`
@@ -610,7 +610,7 @@ C:\MINA\tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\Sou
 - example:
 
 ```text
-C:\MINA\tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\Sources\MINA-Codex --corpus-root D:\CorpusShards --scan-only
+C:\Tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\SourceRepo --corpus-root C:\CorpusShards --scan-only
 ```
 
 `--reuse-index`
@@ -620,7 +620,7 @@ C:\MINA\tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\Sou
 - example:
 
 ```text
-C:\MINA\tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\Sources\MINA-Codex --reuse-index
+C:\Tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\SourceRepo --reuse-index
 ```
 
 `--no-index-reuse`
@@ -629,7 +629,7 @@ C:\MINA\tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\Sou
 - example:
 
 ```text
-C:\MINA\tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\Sources\MINA-Codex --no-index-reuse
+C:\Tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\SourceRepo --no-index-reuse
 ```
 
 `--force-rescan`
@@ -638,7 +638,7 @@ C:\MINA\tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\Sou
 - example:
 
 ```text
-C:\MINA\tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\Sources\MINA-Codex --force-rescan
+C:\Tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\SourceRepo --force-rescan
 ```
 
 `--print-config`
@@ -647,7 +647,7 @@ C:\MINA\tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\Sou
 - example:
 
 ```text
-C:\MINA\tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\Sources\MINA-Codex --print-config --dry-run
+C:\Tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\SourceRepo --print-config --dry-run
 ```
 
 `--dry-run`
@@ -656,7 +656,7 @@ C:\MINA\tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\Sou
 - example:
 
 ```text
-C:\MINA\tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\Sources\MINA-Codex --dry-run --print-config
+C:\Tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\SourceRepo --dry-run --print-config
 ```
 
 #### Artifact Writing Controls
@@ -667,7 +667,7 @@ C:\MINA\tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\Sou
 - example:
 
 ```text
-C:\MINA\tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\Sources\MINA-Codex --manifest-root D:\TokenizerArtifacts\manifests
+C:\Tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\SourceRepo --manifest-root D:\TokenizerArtifacts\manifests
 ```
 
 `--report-root <path>`
@@ -676,7 +676,7 @@ C:\MINA\tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\Sou
 - example:
 
 ```text
-C:\MINA\tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\Sources\MINA-Codex --report-root D:\TokenizerArtifacts\reports
+C:\Tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\SourceRepo --report-root D:\TokenizerArtifacts\reports
 ```
 
 `--write-report`
@@ -685,7 +685,7 @@ C:\MINA\tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\Sou
 - example:
 
 ```text
-C:\MINA\tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\Sources\MINA-Codex --write-report
+C:\Tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\SourceRepo --write-report
 ```
 
 `--no-write-report`
@@ -694,7 +694,7 @@ C:\MINA\tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\Sou
 - example:
 
 ```text
-C:\MINA\tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\Sources\MINA-Codex --no-write-report
+C:\Tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\SourceRepo --no-write-report
 ```
 
 `--write-samples`
@@ -703,7 +703,7 @@ C:\MINA\tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\Sou
 - example:
 
 ```text
-C:\MINA\tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\Sources\MINA-Codex --write-samples
+C:\Tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\SourceRepo --write-samples
 ```
 
 `--no-write-samples`
@@ -712,7 +712,7 @@ C:\MINA\tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\Sou
 - example:
 
 ```text
-C:\MINA\tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\Sources\MINA-Codex --no-write-samples
+C:\Tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\SourceRepo --no-write-samples
 ```
 
 #### General
@@ -723,7 +723,7 @@ C:\MINA\tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\Sou
 - example:
 
 ```text
-C:\MINA\tokenizer\build\Debug\tokenizer_train_tool.exe --help
+C:\Tokenizer\build\Debug\tokenizer_train_tool.exe --help
 ```
 
 ### Training Progress Files
@@ -731,8 +731,8 @@ C:\MINA\tokenizer\build\Debug\tokenizer_train_tool.exe --help
 During training, inspect:
 
 ```text
-Get-Content C:\MINA\tokenizer\manifests\tokenizer\tokenizer_training_progress.json
-Get-Content C:\MINA\tokenizer\reports\tokenizer\tokenizer_training_log.md -Tail 50 -Wait
+Get-Content C:\Tokenizer\manifests\tokenizer\tokenizer_training_progress.json
+Get-Content C:\Tokenizer\reports\tokenizer\tokenizer_training_log.md -Tail 50 -Wait
 ```
 
 The progress JSON includes:
@@ -752,10 +752,10 @@ The progress JSON includes:
 After a successful training run, inspect:
 
 ```text
-Get-Content C:\MINA\tokenizer\manifests\tokenizer\shared_tokenizer.config.json
-Get-Content C:\MINA\tokenizer\manifests\tokenizer\shared_tokenizer.manifest.json
-Get-Content C:\MINA\tokenizer\reports\tokenizer\tokenizer_report.md
-Get-Content C:\MINA\tokenizer\reports\tokenizer\tokenizer_samples.md
+Get-Content C:\Tokenizer\manifests\tokenizer\shared_tokenizer.config.json
+Get-Content C:\Tokenizer\manifests\tokenizer\shared_tokenizer.manifest.json
+Get-Content C:\Tokenizer\reports\tokenizer\tokenizer_report.md
+Get-Content C:\Tokenizer\reports\tokenizer\tokenizer_samples.md
 ```
 
 Model files:
@@ -785,31 +785,31 @@ Defaults:
 Inspect the default model:
 
 ```text
-C:\MINA\tokenizer\build\Debug\tokenizer_inspect_tool.exe
+C:\Tokenizer\build\Debug\tokenizer_inspect_tool.exe
 ```
 
 Inspect a specific model:
 
 ```text
-C:\MINA\tokenizer\build\Debug\tokenizer_inspect_tool.exe --model-path C:\MINA\tokenizer\manifests\tokenizer\shared_tokenizer.model
+C:\Tokenizer\build\Debug\tokenizer_inspect_tool.exe --model-path C:\Tokenizer\manifests\tokenizer\shared_tokenizer.model
 ```
 
 Inspect a specific sentence:
 
 ```text
-C:\MINA\tokenizer\build\Debug\tokenizer_inspect_tool.exe --text "The available inputs do not provide enough evidence, so the shell should preserve uncertainty."
+C:\Tokenizer\build\Debug\tokenizer_inspect_tool.exe --text "The available inputs do not provide enough evidence, so the shell should preserve uncertainty."
 ```
 
 Inspect a specific model and sentence:
 
 ```text
-C:\MINA\tokenizer\build\Debug\tokenizer_inspect_tool.exe --model-path C:\MINA\tokenizer\manifests\tokenizer\shared_tokenizer.model --text "Source public://pmc/PMC4457059 reports that the claim is tied to the described study."
+C:\Tokenizer\build\Debug\tokenizer_inspect_tool.exe --model-path C:\Tokenizer\manifests\tokenizer\shared_tokenizer.model --text "Source public://pmc/PMC4457059 reports that the claim is tied to the described study."
 ```
 
 Show help:
 
 ```text
-C:\MINA\tokenizer\build\Debug\tokenizer_inspect_tool.exe --help
+C:\Tokenizer\build\Debug\tokenizer_inspect_tool.exe --help
 ```
 
 ## Full End-To-End Examples
@@ -817,31 +817,31 @@ C:\MINA\tokenizer\build\Debug\tokenizer_inspect_tool.exe --help
 ### Example 1: Fresh Beginner Run
 
 ```text
-$env:PATH = "C:\MINA\tokenizer\build\Debug;C:\MINA\tokenizer\vcpkg_installed\x64-windows\debug\bin;C:\MINA\tokenizer\vcpkg_installed\x64-windows\bin;" + $env:PATH
-C:\MINA\tokenizer\build\Debug\tokenizer_parquet_ingest_tool.exe --parquet-root C:\MINA\datasets --output-root C:\MINA\tokenizer
-C:\MINA\tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\Sources\MINA-Codex --dataset-root C:\MINA\datasets --output-root C:\MINA\tokenizer --corpus-root C:\MINA\tokenizer\exports\tokenizer\parquet_corpus --scan-only
-C:\MINA\tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\Sources\MINA-Codex --dataset-root C:\MINA\datasets --output-root C:\MINA\tokenizer --corpus-root C:\MINA\tokenizer\exports\tokenizer\parquet_corpus
-C:\MINA\tokenizer\build\Debug\tokenizer_inspect_tool.exe --model-path C:\MINA\tokenizer\manifests\tokenizer\shared_tokenizer.model --text "The available inputs do not provide enough evidence, so the shell should preserve uncertainty."
+$env:PATH = "C:\Tokenizer\build\Debug;C:\Tokenizer\vcpkg_installed\x64-windows\debug\bin;C:\Tokenizer\vcpkg_installed\x64-windows\bin;" + $env:PATH
+C:\Tokenizer\build\Debug\tokenizer_parquet_ingest_tool.exe --parquet-root C:\Datasets --output-root C:\Tokenizer
+C:\Tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\SourceRepo --dataset-root C:\Datasets --output-root C:\Tokenizer --corpus-root C:\Tokenizer\exports\tokenizer\parquet_corpus --scan-only
+C:\Tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\SourceRepo --dataset-root C:\Datasets --output-root C:\Tokenizer --corpus-root C:\Tokenizer\exports\tokenizer\parquet_corpus
+C:\Tokenizer\build\Debug\tokenizer_inspect_tool.exe --model-path C:\Tokenizer\manifests\tokenizer\shared_tokenizer.model --text "The available inputs do not provide enough evidence, so the shell should preserve uncertainty."
 ```
 
 ### Example 2: Stable Corpus On Another Drive
 
 ```text
-$env:PATH = "C:\MINA\tokenizer\build\Debug;C:\MINA\tokenizer\vcpkg_installed\x64-windows\debug\bin;C:\MINA\tokenizer\vcpkg_installed\x64-windows\bin;" + $env:PATH
-C:\MINA\tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\Sources\MINA-Codex --dataset-root C:\MINA\datasets --output-root C:\MINA\tokenizer --corpus-root D:\CorpusShards --scan-only
-C:\MINA\tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\Sources\MINA-Codex --dataset-root C:\MINA\datasets --output-root C:\MINA\tokenizer --corpus-root D:\CorpusShards
+$env:PATH = "C:\Tokenizer\build\Debug;C:\Tokenizer\vcpkg_installed\x64-windows\debug\bin;C:\Tokenizer\vcpkg_installed\x64-windows\bin;" + $env:PATH
+C:\Tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\SourceRepo --dataset-root C:\Datasets --output-root C:\Tokenizer --corpus-root C:\CorpusShards --scan-only
+C:\Tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\SourceRepo --dataset-root C:\Datasets --output-root C:\Tokenizer --corpus-root C:\CorpusShards
 ```
 
 ### Example 3: Debug A Training Configuration Without Running It
 
 ```text
-C:\MINA\tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\Sources\MINA-Codex --dataset-root C:\MINA\datasets --output-root C:\MINA\tokenizer --corpus-root D:\CorpusShards --sampled-sentence-count 8000000 --verbose-trainer --print-config --dry-run
+C:\Tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\SourceRepo --dataset-root C:\Datasets --output-root C:\Tokenizer --corpus-root C:\CorpusShards --sampled-sentence-count 8000000 --verbose-trainer --print-config --dry-run
 ```
 
 ### Example 4: Force A Rescan Then Train Quietly
 
 ```text
-C:\MINA\tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\Sources\MINA-Codex --dataset-root C:\MINA\datasets --output-root C:\MINA\tokenizer --corpus-root D:\CorpusShards --force-rescan --quiet-trainer
+C:\Tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\SourceRepo --dataset-root C:\Datasets --output-root C:\Tokenizer --corpus-root C:\CorpusShards --force-rescan --quiet-trainer
 ```
 
 ## Troubleshooting
@@ -855,13 +855,13 @@ Cause:
 Fix in PowerShell:
 
 ```text
-$env:PATH = "C:\MINA\tokenizer\build\Debug;C:\MINA\tokenizer\vcpkg_installed\x64-windows\debug\bin;C:\MINA\tokenizer\vcpkg_installed\x64-windows\bin;" + $env:PATH
+$env:PATH = "C:\Tokenizer\build\Debug;C:\Tokenizer\vcpkg_installed\x64-windows\debug\bin;C:\Tokenizer\vcpkg_installed\x64-windows\bin;" + $env:PATH
 ```
 
 Fix in `cmd.exe`:
 
 ```text
-set PATH=C:\MINA\tokenizer\build\Debug;C:\MINA\tokenizer\vcpkg_installed\x64-windows\debug\bin;C:\MINA\tokenizer\vcpkg_installed\x64-windows\bin;%PATH%
+set PATH=C:\Tokenizer\build\Debug;C:\Tokenizer\vcpkg_installed\x64-windows\debug\bin;C:\Tokenizer\vcpkg_installed\x64-windows\bin;%PATH%
 ```
 
 ### `cmake` Or `ctest` Is Not Recognized
@@ -896,8 +896,8 @@ Cause:
 Fix:
 
 ```text
-Get-ChildItem D:\CorpusShards
-Get-ChildItem C:\MINA\tokenizer\exports\tokenizer\parquet_corpus
+Get-ChildItem C:\CorpusShards
+Get-ChildItem C:\Tokenizer\exports\tokenizer\parquet_corpus
 ```
 
 Then rerun with the correct `--corpus-root`.
@@ -942,7 +942,7 @@ Fix:
 Example:
 
 ```text
-C:\MINA\tokenizer\build\Debug\tokenizer_inspect_tool.exe --model-path D:\TokenizerArtifacts\manifests\shared_tokenizer.model --text "Test sentence."
+C:\Tokenizer\build\Debug\tokenizer_inspect_tool.exe --model-path D:\TokenizerArtifacts\manifests\shared_tokenizer.model --text "Test sentence."
 ```
 
 ### Training Output Looks Quiet Or Stuck
@@ -958,8 +958,8 @@ Fix:
 - inspect:
 
 ```text
-Get-Content C:\MINA\tokenizer\manifests\tokenizer\tokenizer_training_progress.json
-Get-Content C:\MINA\tokenizer\reports\tokenizer\tokenizer_training_log.md -Tail 50 -Wait
+Get-Content C:\Tokenizer\manifests\tokenizer\tokenizer_training_progress.json
+Get-Content C:\Tokenizer\reports\tokenizer\tokenizer_training_log.md -Tail 50 -Wait
 ```
 
 ### Parquet Ingest Appears Idle
@@ -971,8 +971,8 @@ Cause:
 Fix:
 
 ```text
-Get-Content C:\MINA\tokenizer\manifests\tokenizer\parquet_ingest_progress.json
-Get-Content C:\MINA\tokenizer\reports\tokenizer\parquet_ingest_log.md -Tail 50 -Wait
+Get-Content C:\Tokenizer\manifests\tokenizer\parquet_ingest_progress.json
+Get-Content C:\Tokenizer\reports\tokenizer\parquet_ingest_log.md -Tail 50 -Wait
 ```
 
 ### The Corpus Changed After Indexing
@@ -985,8 +985,8 @@ If shard or supplemental files changed:
 Example:
 
 ```text
-C:\MINA\tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\Sources\MINA-Codex --dataset-root C:\MINA\datasets --output-root C:\MINA\tokenizer --corpus-root D:\CorpusShards --scan-only --force-rescan
-C:\MINA\tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\Sources\MINA-Codex --dataset-root C:\MINA\datasets --output-root C:\MINA\tokenizer --corpus-root D:\CorpusShards
+C:\Tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\SourceRepo --dataset-root C:\Datasets --output-root C:\Tokenizer --corpus-root C:\CorpusShards --scan-only --force-rescan
+C:\Tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\SourceRepo --dataset-root C:\Datasets --output-root C:\Tokenizer --corpus-root C:\CorpusShards
 ```
 
 ### Long Lines Are Skipped During SentencePiece Training
@@ -1002,7 +1002,7 @@ Fix:
 Example:
 
 ```text
-C:\MINA\tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\Sources\MINA-Codex --max-sentence-length 20000
+C:\Tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\SourceRepo --max-sentence-length 20000
 ```
 
 ## Testing Coverage
@@ -1023,16 +1023,16 @@ The tokenizer test suite covers:
 Run:
 
 ```text
-$env:PATH = "C:\MINA\tokenizer\build\Debug;C:\MINA\tokenizer\vcpkg_installed\x64-windows\debug\bin;C:\MINA\tokenizer\vcpkg_installed\x64-windows\bin;" + $env:PATH
-C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\ctest.exe --test-dir C:\MINA\tokenizer\build -C Debug --output-on-failure
+$env:PATH = "C:\Tokenizer\build\Debug;C:\Tokenizer\vcpkg_installed\x64-windows\debug\bin;C:\Tokenizer\vcpkg_installed\x64-windows\bin;" + $env:PATH
+C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\ctest.exe --test-dir C:\Tokenizer\build -C Debug --output-on-failure
 ```
 
 ## Runtime Consumption
 
-All shell tracks should load the same tokenizer artifact through `Mina::Tokenizer::SharedTokenizer`.
+All consumers should load the same tokenizer artifact through the shared tokenizer runtime class.
 
 Recommended runtime model artifact:
 
-- `C:\MINA\tokenizer\manifests\tokenizer\shared_tokenizer.model`
+- `C:\Tokenizer\manifests\tokenizer\shared_tokenizer.model`
 
-Do not train shell-specific tokenizers if the project goal is one shared tokenizer contract.
+Do not train consumer-specific tokenizers if the project goal is one shared tokenizer contract.
