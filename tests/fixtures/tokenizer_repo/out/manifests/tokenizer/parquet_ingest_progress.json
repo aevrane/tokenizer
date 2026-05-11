@@ -1,0 +1,18 @@
+{
+  "status": "running",
+  "discovery_checksum": "fnv1a64:edef14200360bc55",
+  "current_file_relative_path": "",
+  "last_successful_flush_utc": "2026-05-04T22:35:59Z",
+  "discovery_count": 1,
+  "current_file_index": 0,
+  "current_row_group_index": 0,
+  "current_batch_index": 0,
+  "current_output_shard_index": 0,
+  "current_output_shard_bytes": 0,
+  "total_rows_processed": 0,
+  "total_text_rows_written": 0,
+  "total_text_bytes_written": 0,
+  "completed_file_count": 0,
+  "skipped_file_count": 0,
+  "resumed_run_count": 0
+}

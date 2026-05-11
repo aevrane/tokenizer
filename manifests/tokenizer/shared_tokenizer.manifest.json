@@ -1,0 +1,3110 @@
+{
+  "tokenizer_id": "shared-shell-tokenizer",
+  "tokenizer_version": "tokenizer-v0001",
+  "tokenizer_type": "sentencepiece_bpe_v1",
+  "normalizer_name": "english_project_v1",
+  "requested_vocab_size": 32000,
+  "learned_vocab_size": 32000,
+  "special_token_count": 4,
+  "training_text_count": 4999839,
+  "scanned_training_text_count": 385304046,
+  "guaranteed_training_text_count": 1696,
+  "held_out_text_count": 16,
+  "repeated_training_example_count": 385304069,
+  "total_training_characters": 80381413432,
+  "total_held_out_characters": 2404,
+  "byte_fallback_token_count": 2,
+  "held_out_token_count": 565,
+  "held_out_character_count": 2404,
+  "average_characters_per_token": 4.2549,
+  "average_held_out_tokens_per_example": 35.3125,
+  "average_held_out_characters_per_token": 4.2549,
+  "special_tokens": {
+    "<bos>": 1,
+    "<eos>": 2,
+    "<pad>": 3,
+    "<unk>": 0
+  },
+  "source_files": [
+    {
+      "relative_path": "shard-000000.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1367576,
+      "text_count": 1367576,
+      "character_count": 266424056,
+      "checksum": "fnv1a64:12df2391039265c7",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000001.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1244462,
+      "text_count": 1244462,
+      "character_count": 266532690,
+      "checksum": "fnv1a64:f1839f8ff33d6bec",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000002.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1241403,
+      "text_count": 1241403,
+      "character_count": 267007279,
+      "checksum": "fnv1a64:7642c85353b5fcd3",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000003.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1349981,
+      "text_count": 1349981,
+      "character_count": 266744369,
+      "checksum": "fnv1a64:cd7433ca3c9f312c",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000004.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1254214,
+      "text_count": 1254214,
+      "character_count": 266638863,
+      "checksum": "fnv1a64:a94254bb45658deb",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000005.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1243470,
+      "text_count": 1243470,
+      "character_count": 266692527,
+      "checksum": "fnv1a64:4179cfca4a680a50",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000006.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1356132,
+      "text_count": 1356132,
+      "character_count": 266817220,
+      "checksum": "fnv1a64:d199bb0dab91a0e6",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000007.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1258718,
+      "text_count": 1258718,
+      "character_count": 266616197,
+      "checksum": "fnv1a64:f868cb5a7bd9b45a",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000008.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1242498,
+      "text_count": 1242498,
+      "character_count": 266771055,
+      "checksum": "fnv1a64:6fc304ff8e488c78",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000009.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1346240,
+      "text_count": 1346240,
+      "character_count": 266870492,
+      "checksum": "fnv1a64:c74996b571a553f9",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000010.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1260275,
+      "text_count": 1260275,
+      "character_count": 267157910,
+      "checksum": "fnv1a64:36df4f5eb437dc7",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000011.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1249213,
+      "text_count": 1249213,
+      "character_count": 267079578,
+      "checksum": "fnv1a64:b3b82fea96733228",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000012.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1348309,
+      "text_count": 1348309,
+      "character_count": 266807745,
+      "checksum": "fnv1a64:7fc712154d2ff9c0",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000013.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1263163,
+      "text_count": 1263163,
+      "character_count": 266977607,
+      "checksum": "fnv1a64:c72d5696fec96777",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000014.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1239908,
+      "text_count": 1239908,
+      "character_count": 266817363,
+      "checksum": "fnv1a64:ac12269b3278c1d0",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000015.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1352329,
+      "text_count": 1352329,
+      "character_count": 266684052,
+      "checksum": "fnv1a64:436f68f4392602f2",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000016.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1256512,
+      "text_count": 1256512,
+      "character_count": 266428585,
+      "checksum": "fnv1a64:e63c10047422e4a4",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000017.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1245756,
+      "text_count": 1245756,
+      "character_count": 266828477,
+      "checksum": "fnv1a64:a5492c97a8070ec1",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000018.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1353126,
+      "text_count": 1353126,
+      "character_count": 266372808,
+      "checksum": "fnv1a64:5d47ecdd89dda9e6",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000019.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1263833,
+      "text_count": 1263833,
+      "character_count": 266921185,
+      "checksum": "fnv1a64:4c417e7c8416a703",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000020.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1243722,
+      "text_count": 1243722,
+      "character_count": 266696896,
+      "checksum": "fnv1a64:2d7bc808d3f98475",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000021.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1347791,
+      "text_count": 1347791,
+      "character_count": 266534935,
+      "checksum": "fnv1a64:e92c943575f87839",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000022.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1267485,
+      "text_count": 1267485,
+      "character_count": 267021770,
+      "checksum": "fnv1a64:91437062049f6b9e",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000023.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1246512,
+      "text_count": 1246512,
+      "character_count": 267073231,
+      "checksum": "fnv1a64:5daf7ee841650769",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000024.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1346113,
+      "text_count": 1346113,
+      "character_count": 266623806,
+      "checksum": "fnv1a64:14b1062e709a878a",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000025.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1268546,
+      "text_count": 1268546,
+      "character_count": 266664662,
+      "checksum": "fnv1a64:8a938186b59c3b94",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000026.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1250446,
+      "text_count": 1250446,
+      "character_count": 266832855,
+      "checksum": "fnv1a64:17272f9390a80012",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000027.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1339686,
+      "text_count": 1339686,
+      "character_count": 266661943,
+      "checksum": "fnv1a64:c2e21426a35b3b35",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000028.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1276450,
+      "text_count": 1276450,
+      "character_count": 266666718,
+      "checksum": "fnv1a64:5730affb619b1df1",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000029.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1250461,
+      "text_count": 1250461,
+      "character_count": 266631713,
+      "checksum": "fnv1a64:e2f17cfd1c293166",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000030.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1342534,
+      "text_count": 1342534,
+      "character_count": 266451314,
+      "checksum": "fnv1a64:bf2f9e5d61b94e2",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000031.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1274640,
+      "text_count": 1274640,
+      "character_count": 266549624,
+      "checksum": "fnv1a64:b1d4c8d76f2718ac",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000032.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1247530,
+      "text_count": 1247530,
+      "character_count": 267052355,
+      "checksum": "fnv1a64:57855fa3d6a71da9",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000033.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1276378,
+      "text_count": 1276378,
+      "character_count": 266786215,
+      "checksum": "fnv1a64:d93d3fcfb890540",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000034.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1328756,
+      "text_count": 1328756,
+      "character_count": 266447852,
+      "checksum": "fnv1a64:49aa0455fe5da6b0",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000035.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1251810,
+      "text_count": 1251810,
+      "character_count": 266705194,
+      "checksum": "fnv1a64:755d68a97187adab",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000036.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1230823,
+      "text_count": 1230823,
+      "character_count": 267120090,
+      "checksum": "fnv1a64:f75acdd7409ccc24",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000037.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1366996,
+      "text_count": 1366996,
+      "character_count": 267013887,
+      "checksum": "fnv1a64:db326f0a5fc4f413",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000038.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1258849,
+      "text_count": 1258849,
+      "character_count": 266740836,
+      "checksum": "fnv1a64:fe50299f739ecb7",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000039.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1229785,
+      "text_count": 1229785,
+      "character_count": 266650378,
+      "checksum": "fnv1a64:18d6b813be779ebe",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000040.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1348746,
+      "text_count": 1348746,
+      "character_count": 267003977,
+      "checksum": "fnv1a64:23f1f1ea0f198992",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000041.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1290263,
+      "text_count": 1290263,
+      "character_count": 267142265,
+      "checksum": "fnv1a64:a484f76d1330ff43",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000042.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1245243,
+      "text_count": 1245243,
+      "character_count": 266877654,
+      "checksum": "fnv1a64:2396f40ec588030a",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000043.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1279828,
+      "text_count": 1279828,
+      "character_count": 266430581,
+      "checksum": "fnv1a64:b759e4088783d0e7",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000044.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1324808,
+      "text_count": 1324808,
+      "character_count": 266702919,
+      "checksum": "fnv1a64:72b548672a22801d",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000045.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1256046,
+      "text_count": 1256046,
+      "character_count": 266923944,
+      "checksum": "fnv1a64:1c6c39780c80f848",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000046.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1231219,
+      "text_count": 1231219,
+      "character_count": 266982842,
+      "checksum": "fnv1a64:bd270e162b3053a7",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000047.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1352732,
+      "text_count": 1352732,
+      "character_count": 266478349,
+      "checksum": "fnv1a64:900cbec45564204a",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000048.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1257589,
+      "text_count": 1257589,
+      "character_count": 266992232,
+      "checksum": "fnv1a64:20f18a701a2ee30c",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000049.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1224204,
+      "text_count": 1224204,
+      "character_count": 267079381,
+      "checksum": "fnv1a64:e4374c935d5114d8",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000050.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1348189,
+      "text_count": 1348189,
+      "character_count": 266613304,
+      "checksum": "fnv1a64:5d54d6a6bd641689",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000051.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1275689,
+      "text_count": 1275689,
+      "character_count": 266844521,
+      "checksum": "fnv1a64:18d00ff5cf719a12",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000052.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1241567,
+      "text_count": 1241567,
+      "character_count": 266997559,
+      "checksum": "fnv1a64:213a0ffb840453f2",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000053.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1302782,
+      "text_count": 1302782,
+      "character_count": 266786329,
+      "checksum": "fnv1a64:12e5842f9e8ba",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000054.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1296342,
+      "text_count": 1296342,
+      "character_count": 266715027,
+      "checksum": "fnv1a64:3696e4ccedee2ce9",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000055.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1266035,
+      "text_count": 1266035,
+      "character_count": 266760839,
+      "checksum": "fnv1a64:a37026b272f8b461",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000056.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1245275,
+      "text_count": 1245275,
+      "character_count": 267111266,
+      "checksum": "fnv1a64:c572ee8dd2525e20",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000057.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1336446,
+      "text_count": 1336446,
+      "character_count": 266826578,
+      "checksum": "fnv1a64:4f38ec7b6abbb5c9",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000058.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1254926,
+      "text_count": 1254926,
+      "character_count": 267019563,
+      "checksum": "fnv1a64:156c60521e6b435d",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000059.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1206518,
+      "text_count": 1206518,
+      "character_count": 266496299,
+      "checksum": "fnv1a64:33cc82a8ee9d79b1",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000060.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1368963,
+      "text_count": 1368963,
+      "character_count": 266499118,
+      "checksum": "fnv1a64:2cb245104797fe",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000061.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1261129,
+      "text_count": 1261129,
+      "character_count": 266787773,
+      "checksum": "fnv1a64:8be717a5d2913a32",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000062.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1225597,
+      "text_count": 1225597,
+      "character_count": 266822733,
+      "checksum": "fnv1a64:63109942dc2e6a70",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000063.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1338514,
+      "text_count": 1338514,
+      "character_count": 266780963,
+      "checksum": "fnv1a64:f09d9c7c9768e2dc",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000064.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1284012,
+      "text_count": 1284012,
+      "character_count": 266750725,
+      "checksum": "fnv1a64:8b149c3e042469d1",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000065.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1248633,
+      "text_count": 1248633,
+      "character_count": 267021958,
+      "checksum": "fnv1a64:794145e75b0938d1",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000066.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1289503,
+      "text_count": 1289503,
+      "character_count": 266552552,
+      "checksum": "fnv1a64:b4b164b294c8b98b",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000067.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1316972,
+      "text_count": 1316972,
+      "character_count": 266508163,
+      "checksum": "fnv1a64:c814a877200eebbf",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000068.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1259414,
+      "text_count": 1259414,
+      "character_count": 266978274,
+      "checksum": "fnv1a64:e9512ff788675391",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000069.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1229679,
+      "text_count": 1229679,
+      "character_count": 266905781,
+      "checksum": "fnv1a64:f3cf9f7ee7011903",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000070.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1356788,
+      "text_count": 1356788,
+      "character_count": 266862046,
+      "checksum": "fnv1a64:2357c9659629d2c7",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000071.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1256974,
+      "text_count": 1256974,
+      "character_count": 267136323,
+      "checksum": "fnv1a64:b0a1d2409a32500c",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000072.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1210485,
+      "text_count": 1210485,
+      "character_count": 266925658,
+      "checksum": "fnv1a64:39cf814f687151a9",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000073.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1356535,
+      "text_count": 1356535,
+      "character_count": 266376239,
+      "checksum": "fnv1a64:9b727ee3d8047b61",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000074.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1273556,
+      "text_count": 1273556,
+      "character_count": 266984245,
+      "checksum": "fnv1a64:573d2823f23d2877",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000075.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1232772,
+      "text_count": 1232772,
+      "character_count": 267127945,
+      "checksum": "fnv1a64:842e70386fef8cd2",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000076.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1315776,
+      "text_count": 1315776,
+      "character_count": 266328804,
+      "checksum": "fnv1a64:63a4b0b4b04b1a1a",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000077.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1290935,
+      "text_count": 1290935,
+      "character_count": 266994297,
+      "checksum": "fnv1a64:2adc0a5d1a3d644c",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000078.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1255320,
+      "text_count": 1255320,
+      "character_count": 266679348,
+      "checksum": "fnv1a64:be12a152c534290e",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000079.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1332067,
+      "text_count": 1332067,
+      "character_count": 266756036,
+      "checksum": "fnv1a64:f762ad66ce2af61f",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000080.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1287063,
+      "text_count": 1287063,
+      "character_count": 266660952,
+      "checksum": "fnv1a64:7d9b613096b2721a",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000081.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1247827,
+      "text_count": 1247827,
+      "character_count": 266868345,
+      "checksum": "fnv1a64:12b89967c15b4836",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000082.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1339782,
+      "text_count": 1339782,
+      "character_count": 266402245,
+      "checksum": "fnv1a64:cc9b93420936acce",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000083.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1279781,
+      "text_count": 1279781,
+      "character_count": 266924765,
+      "checksum": "fnv1a64:314e25c2723f96b9",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000084.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1246205,
+      "text_count": 1246205,
+      "character_count": 267084958,
+      "checksum": "fnv1a64:9589ebb4e195a7bb",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000085.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1361609,
+      "text_count": 1361609,
+      "character_count": 266715239,
+      "checksum": "fnv1a64:2f808202016442eb",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000086.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1265266,
+      "text_count": 1265266,
+      "character_count": 267145113,
+      "checksum": "fnv1a64:113d033608189096",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000087.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1234721,
+      "text_count": 1234721,
+      "character_count": 266456937,
+      "checksum": "fnv1a64:4fe7785757f214d6",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000088.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1357854,
+      "text_count": 1357854,
+      "character_count": 266556311,
+      "checksum": "fnv1a64:e6519182edaafa02",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000089.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1262254,
+      "text_count": 1262254,
+      "character_count": 266975943,
+      "checksum": "fnv1a64:de30e566d99d237a",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000090.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1242825,
+      "text_count": 1242825,
+      "character_count": 266582357,
+      "checksum": "fnv1a64:adecf5cec61e0eb2",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000091.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1346902,
+      "text_count": 1346902,
+      "character_count": 267076345,
+      "checksum": "fnv1a64:3f7d20e194678706",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000092.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1254876,
+      "text_count": 1254876,
+      "character_count": 266939259,
+      "checksum": "fnv1a64:a962fcc1e98a99db",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000093.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1253044,
+      "text_count": 1253044,
+      "character_count": 266879086,
+      "checksum": "fnv1a64:78268bf435d4500",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000094.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1332917,
+      "text_count": 1332917,
+      "character_count": 266913852,
+      "checksum": "fnv1a64:cc5b2dfdb2f0bce0",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000095.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1251505,
+      "text_count": 1251505,
+      "character_count": 266628842,
+      "checksum": "fnv1a64:3b135ff782603ca3",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000096.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1250818,
+      "text_count": 1250818,
+      "character_count": 266430534,
+      "checksum": "fnv1a64:69ac8856c3284fde",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000097.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1330558,
+      "text_count": 1330558,
+      "character_count": 266561791,
+      "checksum": "fnv1a64:84f3d5b201a2f731",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000098.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1257760,
+      "text_count": 1257760,
+      "character_count": 266777872,
+      "checksum": "fnv1a64:3916d002153e4b29",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000099.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1270850,
+      "text_count": 1270850,
+      "character_count": 266782010,
+      "checksum": "fnv1a64:1515c096d1ca0475",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000100.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1327615,
+      "text_count": 1327615,
+      "character_count": 266713151,
+      "checksum": "fnv1a64:300590502a27534b",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000101.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1255925,
+      "text_count": 1255925,
+      "character_count": 266928631,
+      "checksum": "fnv1a64:1c237b7151113e58",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000102.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1275490,
+      "text_count": 1275490,
+      "character_count": 266682155,
+      "checksum": "fnv1a64:185a16edba6356",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000103.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1320417,
+      "text_count": 1320417,
+      "character_count": 266320486,
+      "checksum": "fnv1a64:5b7b4ea98fc81951",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000104.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1249334,
+      "text_count": 1249334,
+      "character_count": 266636783,
+      "checksum": "fnv1a64:2082a17a93d337b7",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000105.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1280635,
+      "text_count": 1280635,
+      "character_count": 267098342,
+      "checksum": "fnv1a64:a98ecafce222a179",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000106.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1313901,
+      "text_count": 1313901,
+      "character_count": 266372553,
+      "checksum": "fnv1a64:5f249f936832b33f",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000107.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1246775,
+      "text_count": 1246775,
+      "character_count": 266665105,
+      "checksum": "fnv1a64:499bc9835a3ad47e",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000108.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1289990,
+      "text_count": 1289990,
+      "character_count": 266295074,
+      "checksum": "fnv1a64:592dc9b5cc4670f",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000109.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1309437,
+      "text_count": 1309437,
+      "character_count": 266363520,
+      "checksum": "fnv1a64:7daabd79f3b04e19",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000110.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1247800,
+      "text_count": 1247800,
+      "character_count": 266534681,
+      "checksum": "fnv1a64:4a6091c7ae67a866",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000111.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1296919,
+      "text_count": 1296919,
+      "character_count": 266277393,
+      "checksum": "fnv1a64:1d4af58945e84239",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000112.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1303480,
+      "text_count": 1303480,
+      "character_count": 266622614,
+      "checksum": "fnv1a64:9d3c5bf2921a108b",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000113.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1252482,
+      "text_count": 1252482,
+      "character_count": 267013845,
+      "checksum": "fnv1a64:e96d6ffe795f4f9f",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000114.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1300765,
+      "text_count": 1300765,
+      "character_count": 267110923,
+      "checksum": "fnv1a64:62bae6466d1e616f",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000115.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1293742,
+      "text_count": 1293742,
+      "character_count": 266900533,
+      "checksum": "fnv1a64:68e0dd5a2f584f96",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000116.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1250341,
+      "text_count": 1250341,
+      "character_count": 267140872,
+      "checksum": "fnv1a64:ee05752656653fc5",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000117.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1308747,
+      "text_count": 1308747,
+      "character_count": 266669367,
+      "checksum": "fnv1a64:2b3f5741a73f587e",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000118.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1293768,
+      "text_count": 1293768,
+      "character_count": 266830195,
+      "checksum": "fnv1a64:c7c2cd3841d75aa4",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000119.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1254292,
+      "text_count": 1254292,
+      "character_count": 266637749,
+      "checksum": "fnv1a64:4daf4063e037e0d9",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000120.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1312250,
+      "text_count": 1312250,
+      "character_count": 266483273,
+      "checksum": "fnv1a64:6b94eef3cb9d74f2",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000121.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1278545,
+      "text_count": 1278545,
+      "character_count": 267146701,
+      "checksum": "fnv1a64:c99c5e7ca45447da",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000122.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1250207,
+      "text_count": 1250207,
+      "character_count": 267064476,
+      "checksum": "fnv1a64:bd19188ad06681d4",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000123.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1320776,
+      "text_count": 1320776,
+      "character_count": 266982092,
+      "checksum": "fnv1a64:bc7c2ab4e3f7d3d2",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000124.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1274253,
+      "text_count": 1274253,
+      "character_count": 266936613,
+      "checksum": "fnv1a64:c348298058b3e01a",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000125.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1247832,
+      "text_count": 1247832,
+      "character_count": 266913091,
+      "checksum": "fnv1a64:ae3987fc43e20e1f",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000126.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1343185,
+      "text_count": 1343185,
+      "character_count": 266715074,
+      "checksum": "fnv1a64:144f232e3d302b00",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000127.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1270556,
+      "text_count": 1270556,
+      "character_count": 266333438,
+      "checksum": "fnv1a64:ec2408a1fd383284",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000128.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1247008,
+      "text_count": 1247008,
+      "character_count": 266974173,
+      "checksum": "fnv1a64:b490a1093e758bb3",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000129.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1342825,
+      "text_count": 1342825,
+      "character_count": 267062405,
+      "checksum": "fnv1a64:8272ad54f9a26512",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000130.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1262054,
+      "text_count": 1262054,
+      "character_count": 266890390,
+      "checksum": "fnv1a64:c6a32d55b0368672",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000131.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1239374,
+      "text_count": 1239374,
+      "character_count": 266928430,
+      "checksum": "fnv1a64:1548ef084e3f2db2",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000132.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1342058,
+      "text_count": 1342058,
+      "character_count": 266552246,
+      "checksum": "fnv1a64:de020f4a9c38a2a2",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000133.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1263810,
+      "text_count": 1263810,
+      "character_count": 266817894,
+      "checksum": "fnv1a64:535c80a6a5b72b93",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000134.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1240391,
+      "text_count": 1240391,
+      "character_count": 266846477,
+      "checksum": "fnv1a64:a994fa74efc0fdfd",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000135.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1350473,
+      "text_count": 1350473,
+      "character_count": 266985052,
+      "checksum": "fnv1a64:b3f8c27a8b509516",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000136.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1253249,
+      "text_count": 1253249,
+      "character_count": 266748737,
+      "checksum": "fnv1a64:a58d0acd54eadc21",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000137.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1252424,
+      "text_count": 1252424,
+      "character_count": 266457621,
+      "checksum": "fnv1a64:1b9e1798f459fb3f",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000138.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1340159,
+      "text_count": 1340159,
+      "character_count": 266516692,
+      "checksum": "fnv1a64:97386f390e8738a7",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000139.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1256448,
+      "text_count": 1256448,
+      "character_count": 266437754,
+      "checksum": "fnv1a64:e61a2e05a6293475",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000140.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1258140,
+      "text_count": 1258140,
+      "character_count": 267104444,
+      "checksum": "fnv1a64:42ddd58baeb40045",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000141.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1325539,
+      "text_count": 1325539,
+      "character_count": 266987654,
+      "checksum": "fnv1a64:bed599619e636638",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000142.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1258767,
+      "text_count": 1258767,
+      "character_count": 267002577,
+      "checksum": "fnv1a64:ac4a9dc616cca1c1",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000143.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1267925,
+      "text_count": 1267925,
+      "character_count": 266434374,
+      "checksum": "fnv1a64:422a87acddc0bba9",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000144.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1329094,
+      "text_count": 1329094,
+      "character_count": 266717446,
+      "checksum": "fnv1a64:5784f6343c193952",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000145.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1250159,
+      "text_count": 1250159,
+      "character_count": 266896976,
+      "checksum": "fnv1a64:59838db093f0cd56",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000146.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1284986,
+      "text_count": 1284986,
+      "character_count": 266808804,
+      "checksum": "fnv1a64:cdbbfe62bb14aa0d",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000147.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1308470,
+      "text_count": 1308470,
+      "character_count": 266418427,
+      "checksum": "fnv1a64:10a6cb11f457404b",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000148.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1250186,
+      "text_count": 1250186,
+      "character_count": 266780843,
+      "checksum": "fnv1a64:faed60817ea68b94",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000149.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1298723,
+      "text_count": 1298723,
+      "character_count": 266542534,
+      "checksum": "fnv1a64:9d5be620d77ba8a7",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000150.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1296427,
+      "text_count": 1296427,
+      "character_count": 266932992,
+      "checksum": "fnv1a64:8db9688c057bc206",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000151.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1244113,
+      "text_count": 1244113,
+      "character_count": 266718495,
+      "checksum": "fnv1a64:c6a2bb4a89f9ed4b",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000152.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1298696,
+      "text_count": 1298696,
+      "character_count": 266432989,
+      "checksum": "fnv1a64:e2eba20efe4f2797",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000153.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1290074,
+      "text_count": 1290074,
+      "character_count": 266853582,
+      "checksum": "fnv1a64:116221f9b29de9bf",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000154.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1240863,
+      "text_count": 1240863,
+      "character_count": 266576714,
+      "checksum": "fnv1a64:311095b6b9ec1775",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000155.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1319661,
+      "text_count": 1319661,
+      "character_count": 266921971,
+      "checksum": "fnv1a64:c77449facfaafb76",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000156.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1282536,
+      "text_count": 1282536,
+      "character_count": 266672825,
+      "checksum": "fnv1a64:c953f619efa2c751",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000157.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1233387,
+      "text_count": 1233387,
+      "character_count": 266869561,
+      "checksum": "fnv1a64:6f4081fdd51231ad",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000158.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1337088,
+      "text_count": 1337088,
+      "character_count": 266678737,
+      "checksum": "fnv1a64:9795e0ec5d3d0041",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000159.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1266212,
+      "text_count": 1266212,
+      "character_count": 266998948,
+      "checksum": "fnv1a64:289d929a6656b89",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000160.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1220667,
+      "text_count": 1220667,
+      "character_count": 267078047,
+      "checksum": "fnv1a64:812d184f3f618979",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000161.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1351487,
+      "text_count": 1351487,
+      "character_count": 266831516,
+      "checksum": "fnv1a64:38aaa5d0c3594f68",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000162.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1261960,
+      "text_count": 1261960,
+      "character_count": 267057651,
+      "checksum": "fnv1a64:ccc66a73cb6c6c00",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000163.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1231671,
+      "text_count": 1231671,
+      "character_count": 267077772,
+      "checksum": "fnv1a64:27bc13418aa151aa",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000164.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1349932,
+      "text_count": 1349932,
+      "character_count": 266915063,
+      "checksum": "fnv1a64:54d96b63b7650217",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000165.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1245613,
+      "text_count": 1245613,
+      "character_count": 266438890,
+      "checksum": "fnv1a64:7fa72e5346799e30",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000166.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1251145,
+      "text_count": 1251145,
+      "character_count": 267110771,
+      "checksum": "fnv1a64:3bbcc02714d6d0ba",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000167.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1348498,
+      "text_count": 1348498,
+      "character_count": 267033280,
+      "checksum": "fnv1a64:8563a22df81e3d8d",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000168.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1242974,
+      "text_count": 1242974,
+      "character_count": 267133705,
+      "checksum": "fnv1a64:ec10298b7c7d61fc",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000169.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1260285,
+      "text_count": 1260285,
+      "character_count": 266909664,
+      "checksum": "fnv1a64:976aec0a7a4c32f7",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000170.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1319140,
+      "text_count": 1319140,
+      "character_count": 267079931,
+      "checksum": "fnv1a64:15af3298349b5c54",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000171.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1242986,
+      "text_count": 1242986,
+      "character_count": 266968246,
+      "checksum": "fnv1a64:2f84823a85806efe",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000172.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1258645,
+      "text_count": 1258645,
+      "character_count": 266822032,
+      "checksum": "fnv1a64:cacca2b09cf0c61a",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000173.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1314531,
+      "text_count": 1314531,
+      "character_count": 266696278,
+      "checksum": "fnv1a64:927737e0fe921030",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000174.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1245606,
+      "text_count": 1245606,
+      "character_count": 266837534,
+      "checksum": "fnv1a64:68e275124c6d6a5e",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000175.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1279407,
+      "text_count": 1279407,
+      "character_count": 266916191,
+      "checksum": "fnv1a64:d4d02c45f011bcf1",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000176.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1297347,
+      "text_count": 1297347,
+      "character_count": 267052917,
+      "checksum": "fnv1a64:35aef9a7221ab792",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000177.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1241080,
+      "text_count": 1241080,
+      "character_count": 266804240,
+      "checksum": "fnv1a64:7916bee7c791f84d",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000178.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1287430,
+      "text_count": 1287430,
+      "character_count": 266349993,
+      "checksum": "fnv1a64:7279dcbd61e2869c",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000179.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1282245,
+      "text_count": 1282245,
+      "character_count": 266992999,
+      "checksum": "fnv1a64:d853c4e5904e19f4",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000180.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1246168,
+      "text_count": 1246168,
+      "character_count": 266873882,
+      "checksum": "fnv1a64:b1c79d0ec4783ede",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000181.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1299798,
+      "text_count": 1299798,
+      "character_count": 266333488,
+      "checksum": "fnv1a64:b717c85f795b4c8b",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000182.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1280287,
+      "text_count": 1280287,
+      "character_count": 267045957,
+      "checksum": "fnv1a64:7ecb02d019123a4d",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000183.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1235624,
+      "text_count": 1235624,
+      "character_count": 266797888,
+      "checksum": "fnv1a64:77bd1432b561d369",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000184.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1267527,
+      "text_count": 1267527,
+      "character_count": 266954259,
+      "checksum": "fnv1a64:2e50e1933d9a9d2f",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000185.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1291886,
+      "text_count": 1291886,
+      "character_count": 266510770,
+      "checksum": "fnv1a64:dd7269b02f6ab9e1",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000186.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1243346,
+      "text_count": 1243346,
+      "character_count": 267000386,
+      "checksum": "fnv1a64:d9cc982830e98f29",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000187.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1228972,
+      "text_count": 1228972,
+      "character_count": 266618715,
+      "checksum": "fnv1a64:fbeb8aa414cc74b8",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000188.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1330561,
+      "text_count": 1330561,
+      "character_count": 266888654,
+      "checksum": "fnv1a64:9bc324f7371969a3",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000189.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1248767,
+      "text_count": 1248767,
+      "character_count": 266715919,
+      "checksum": "fnv1a64:7234f30152f3b5db",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000190.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1212008,
+      "text_count": 1212008,
+      "character_count": 267189806,
+      "checksum": "fnv1a64:1879b524fdcc5639",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000191.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1347966,
+      "text_count": 1347966,
+      "character_count": 267026702,
+      "checksum": "fnv1a64:7fcac9f6db3f970d",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000192.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1247988,
+      "text_count": 1247988,
+      "character_count": 266911460,
+      "checksum": "fnv1a64:bd30494959bc49a0",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000193.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1225575,
+      "text_count": 1225575,
+      "character_count": 267140654,
+      "checksum": "fnv1a64:6e643c654161e206",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000194.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1306592,
+      "text_count": 1306592,
+      "character_count": 266817047,
+      "checksum": "fnv1a64:7f21cca34e4d984d",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000195.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1269713,
+      "text_count": 1269713,
+      "character_count": 267132425,
+      "checksum": "fnv1a64:5953de5a5fb1225f",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000196.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1235820,
+      "text_count": 1235820,
+      "character_count": 267045451,
+      "checksum": "fnv1a64:ae4e8c2acac0d3eb",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000197.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1274894,
+      "text_count": 1274894,
+      "character_count": 267038082,
+      "checksum": "fnv1a64:956102f28640e553",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000198.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1291313,
+      "text_count": 1291313,
+      "character_count": 266462222,
+      "checksum": "fnv1a64:3c8f991fd154351c",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000199.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1245550,
+      "text_count": 1245550,
+      "character_count": 266539466,
+      "checksum": "fnv1a64:16b3ead2dcb426ba",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000200.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1236963,
+      "text_count": 1236963,
+      "character_count": 267088766,
+      "checksum": "fnv1a64:30e8991aacfef027",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000201.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1321699,
+      "text_count": 1321699,
+      "character_count": 266852210,
+      "checksum": "fnv1a64:aca170182b9b7e2e",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000202.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1238781,
+      "text_count": 1238781,
+      "character_count": 266599815,
+      "checksum": "fnv1a64:8e1e6dae2f6817d4",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000203.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1210755,
+      "text_count": 1210755,
+      "character_count": 267196818,
+      "checksum": "fnv1a64:e821196dfd271127",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000204.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1350687,
+      "text_count": 1350687,
+      "character_count": 266550403,
+      "checksum": "fnv1a64:7b32054c55912654",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000205.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1252562,
+      "text_count": 1252562,
+      "character_count": 267154923,
+      "checksum": "fnv1a64:5d59b66527a43735",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000206.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1226779,
+      "text_count": 1226779,
+      "character_count": 267131769,
+      "checksum": "fnv1a64:715a8a0faa07099e",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000207.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1320210,
+      "text_count": 1320210,
+      "character_count": 266285104,
+      "checksum": "fnv1a64:9ed7a09d769bb1ce",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000208.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1261410,
+      "text_count": 1261410,
+      "character_count": 266604970,
+      "checksum": "fnv1a64:d4399a8534226566",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000209.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1232907,
+      "text_count": 1232907,
+      "character_count": 266526696,
+      "checksum": "fnv1a64:32ace7e9ae864084",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000210.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1288086,
+      "text_count": 1288086,
+      "character_count": 266876461,
+      "checksum": "fnv1a64:6b430d0db9e49870",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000211.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1290215,
+      "text_count": 1290215,
+      "character_count": 267048071,
+      "checksum": "fnv1a64:206278fc0073f941",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000212.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1247277,
+      "text_count": 1247277,
+      "character_count": 267081624,
+      "checksum": "fnv1a64:6c3a8bb07f4308e5",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000213.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1245218,
+      "text_count": 1245218,
+      "character_count": 266402288,
+      "checksum": "fnv1a64:267645a1ba61db44",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000214.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1332504,
+      "text_count": 1332504,
+      "character_count": 266672136,
+      "checksum": "fnv1a64:af9b2735258c2164",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000215.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1244075,
+      "text_count": 1244075,
+      "character_count": 266767049,
+      "checksum": "fnv1a64:817dffce8ff3fa19",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000216.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1209499,
+      "text_count": 1209499,
+      "character_count": 266706853,
+      "checksum": "fnv1a64:325b1137e35071ec",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000217.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1325986,
+      "text_count": 1325986,
+      "character_count": 266576669,
+      "checksum": "fnv1a64:cb93a3800ab24fa3",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000218.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1253032,
+      "text_count": 1253032,
+      "character_count": 266447726,
+      "checksum": "fnv1a64:f2e813ac52ae7b79",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000219.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1218674,
+      "text_count": 1218674,
+      "character_count": 266695682,
+      "checksum": "fnv1a64:f4b555f8f021d679",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000220.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1325808,
+      "text_count": 1325808,
+      "character_count": 266586607,
+      "checksum": "fnv1a64:9b0af747b9b532c2",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000221.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1262539,
+      "text_count": 1262539,
+      "character_count": 266504729,
+      "checksum": "fnv1a64:8239b36d87b4cb1",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000222.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1237783,
+      "text_count": 1237783,
+      "character_count": 266664802,
+      "checksum": "fnv1a64:36cf9adcd2f3b848",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000223.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1289576,
+      "text_count": 1289576,
+      "character_count": 266262228,
+      "checksum": "fnv1a64:e957f54884711d40",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000224.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1289528,
+      "text_count": 1289528,
+      "character_count": 266615861,
+      "checksum": "fnv1a64:a37cc8eaba8c2a6",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000225.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1243887,
+      "text_count": 1243887,
+      "character_count": 266664569,
+      "checksum": "fnv1a64:7df115cae6668225",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000226.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1246459,
+      "text_count": 1246459,
+      "character_count": 266469105,
+      "checksum": "fnv1a64:7e288333f6383fce",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000227.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1311859,
+      "text_count": 1311859,
+      "character_count": 266999457,
+      "checksum": "fnv1a64:3004132341119bf0",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000228.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1250218,
+      "text_count": 1250218,
+      "character_count": 267012607,
+      "checksum": "fnv1a64:d2608a989e086dd6",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000229.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1284442,
+      "text_count": 1284442,
+      "character_count": 266909706,
+      "checksum": "fnv1a64:1a26046c88d5e8d2",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000230.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1295794,
+      "text_count": 1295794,
+      "character_count": 266842914,
+      "checksum": "fnv1a64:135db8ba649bd3ed",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000231.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1243704,
+      "text_count": 1243704,
+      "character_count": 266613800,
+      "checksum": "fnv1a64:4c3fa4b70b9f6fb3",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000232.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1296571,
+      "text_count": 1296571,
+      "character_count": 266385745,
+      "checksum": "fnv1a64:9864fa9295b9788e",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000233.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1277726,
+      "text_count": 1277726,
+      "character_count": 266399179,
+      "checksum": "fnv1a64:424a8e1a163b26f4",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000234.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1244125,
+      "text_count": 1244125,
+      "character_count": 267055823,
+      "checksum": "fnv1a64:6a084b69e045353",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000235.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1315326,
+      "text_count": 1315326,
+      "character_count": 266334967,
+      "checksum": "fnv1a64:6366bbb48cee8906",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000236.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1267704,
+      "text_count": 1267704,
+      "character_count": 267164579,
+      "checksum": "fnv1a64:e2f5b7690bbd42cb",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000237.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1235758,
+      "text_count": 1235758,
+      "character_count": 266526723,
+      "checksum": "fnv1a64:76564cf6261419b4",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000238.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1341692,
+      "text_count": 1341692,
+      "character_count": 266918371,
+      "checksum": "fnv1a64:da1744c0f71e0294",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000239.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1253550,
+      "text_count": 1253550,
+      "character_count": 266705409,
+      "checksum": "fnv1a64:592d5a490f9235b7",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000240.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1231920,
+      "text_count": 1231920,
+      "character_count": 267032008,
+      "checksum": "fnv1a64:8620fc8b708507f2",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000241.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1349178,
+      "text_count": 1349178,
+      "character_count": 266759860,
+      "checksum": "fnv1a64:437bc9549884fa26",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000242.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1248466,
+      "text_count": 1248466,
+      "character_count": 266578958,
+      "checksum": "fnv1a64:8a1ea17ec0af7f1d",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000243.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1251186,
+      "text_count": 1251186,
+      "character_count": 266793575,
+      "checksum": "fnv1a64:78a5dfb4e0b6919b",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000244.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1328124,
+      "text_count": 1328124,
+      "character_count": 266611919,
+      "checksum": "fnv1a64:99e464944498fec3",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000245.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1250299,
+      "text_count": 1250299,
+      "character_count": 267046223,
+      "checksum": "fnv1a64:9da3fdb049722b2b",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000246.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1270748,
+      "text_count": 1270748,
+      "character_count": 266892825,
+      "checksum": "fnv1a64:c3fb8614a9fb3e96",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000247.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1316009,
+      "text_count": 1316009,
+      "character_count": 267075600,
+      "checksum": "fnv1a64:d05320a1801fc899",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000248.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1249349,
+      "text_count": 1249349,
+      "character_count": 267123033,
+      "checksum": "fnv1a64:ba2bfa75bb48306e",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000249.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1279506,
+      "text_count": 1279506,
+      "character_count": 266600265,
+      "checksum": "fnv1a64:93b66fea3a4d5387",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000250.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1289159,
+      "text_count": 1289159,
+      "character_count": 267103979,
+      "checksum": "fnv1a64:a512ae956b81b0b8",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000251.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1244816,
+      "text_count": 1244816,
+      "character_count": 266420073,
+      "checksum": "fnv1a64:ffd45c2edb0bd900",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000252.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1302380,
+      "text_count": 1302380,
+      "character_count": 266613181,
+      "checksum": "fnv1a64:2d804c236841f871",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000253.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1280846,
+      "text_count": 1280846,
+      "character_count": 266973259,
+      "checksum": "fnv1a64:af3f8078ee51c138",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000254.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1241723,
+      "text_count": 1241723,
+      "character_count": 266638081,
+      "checksum": "fnv1a64:7adea56d81bad303",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000255.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1307773,
+      "text_count": 1307773,
+      "character_count": 266568852,
+      "checksum": "fnv1a64:99fa86144bbf7bc3",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000256.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1266879,
+      "text_count": 1266879,
+      "character_count": 266975880,
+      "checksum": "fnv1a64:6abdc227ed97ca7d",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000257.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1240924,
+      "text_count": 1240924,
+      "character_count": 266464544,
+      "checksum": "fnv1a64:6b440f9fc4da5bdb",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000258.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1330382,
+      "text_count": 1330382,
+      "character_count": 266492388,
+      "checksum": "fnv1a64:96de8e1c3eed4de8",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000259.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1263084,
+      "text_count": 1263084,
+      "character_count": 266570242,
+      "checksum": "fnv1a64:5364f006cd6c6dc2",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000260.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1234670,
+      "text_count": 1234670,
+      "character_count": 266643036,
+      "checksum": "fnv1a64:f2f204a92d23c5d9",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000261.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1342321,
+      "text_count": 1342321,
+      "character_count": 266967049,
+      "checksum": "fnv1a64:b17d43d7f2cb175d",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000262.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1248342,
+      "text_count": 1248342,
+      "character_count": 266614749,
+      "checksum": "fnv1a64:2c569e47559b637a",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000263.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1238462,
+      "text_count": 1238462,
+      "character_count": 266860569,
+      "checksum": "fnv1a64:cea45b60245c952d",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000264.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1330604,
+      "text_count": 1330604,
+      "character_count": 267033036,
+      "checksum": "fnv1a64:7b880cd8ba1f2e48",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000265.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1256947,
+      "text_count": 1256947,
+      "character_count": 266490479,
+      "checksum": "fnv1a64:cbff2387ff936e84",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000266.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1245220,
+      "text_count": 1245220,
+      "character_count": 266686293,
+      "checksum": "fnv1a64:2320e54bda998485",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000267.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1322983,
+      "text_count": 1322983,
+      "character_count": 266640962,
+      "checksum": "fnv1a64:cfda86043fedded6",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000268.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1259350,
+      "text_count": 1259350,
+      "character_count": 266950349,
+      "checksum": "fnv1a64:bb62a4c1b90fc1fd",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000269.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1254581,
+      "text_count": 1254581,
+      "character_count": 266536524,
+      "checksum": "fnv1a64:a93a4eca54ec3e16",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000270.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1318322,
+      "text_count": 1318322,
+      "character_count": 266784644,
+      "checksum": "fnv1a64:7aaa38c2c0c44220",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000271.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1250524,
+      "text_count": 1250524,
+      "character_count": 267147823,
+      "checksum": "fnv1a64:b7ad257eebb7594c",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000272.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1286459,
+      "text_count": 1286459,
+      "character_count": 266512370,
+      "checksum": "fnv1a64:778f94d26f1fc52c",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000273.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1293569,
+      "text_count": 1293569,
+      "character_count": 266410258,
+      "checksum": "fnv1a64:8f8468ee9498a23b",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000274.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1242325,
+      "text_count": 1242325,
+      "character_count": 266508495,
+      "checksum": "fnv1a64:bc68ef618c9aba76",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000275.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1294981,
+      "text_count": 1294981,
+      "character_count": 266507400,
+      "checksum": "fnv1a64:747d850de37e1a88",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000276.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1287126,
+      "text_count": 1287126,
+      "character_count": 267109808,
+      "checksum": "fnv1a64:edcf6cc7ff785065",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000277.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1239967,
+      "text_count": 1239967,
+      "character_count": 266822416,
+      "checksum": "fnv1a64:357664d5f33e5244",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000278.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1319383,
+      "text_count": 1319383,
+      "character_count": 267108623,
+      "checksum": "fnv1a64:f5f777124da8ac67",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000279.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1269044,
+      "text_count": 1269044,
+      "character_count": 266511376,
+      "checksum": "fnv1a64:65912094a639eb2f",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000280.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1242200,
+      "text_count": 1242200,
+      "character_count": 266811913,
+      "checksum": "fnv1a64:1edc525e58bdfbbc",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000281.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1329838,
+      "text_count": 1329838,
+      "character_count": 266645313,
+      "checksum": "fnv1a64:ce00f444d673a8ff",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000282.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1263309,
+      "text_count": 1263309,
+      "character_count": 266732299,
+      "checksum": "fnv1a64:dae8714071d50198",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000283.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1230126,
+      "text_count": 1230126,
+      "character_count": 266469340,
+      "checksum": "fnv1a64:123c7b6801258650",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000284.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1347826,
+      "text_count": 1347826,
+      "character_count": 266708269,
+      "checksum": "fnv1a64:89e8dcaad1197d51",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000285.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1254452,
+      "text_count": 1254452,
+      "character_count": 266844870,
+      "checksum": "fnv1a64:c2e1616131d391f0",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000286.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1241128,
+      "text_count": 1241128,
+      "character_count": 266705732,
+      "checksum": "fnv1a64:fd1475d631895037",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000287.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1334372,
+      "text_count": 1334372,
+      "character_count": 266637649,
+      "checksum": "fnv1a64:1c1e3b13ad04c462",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000288.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1248443,
+      "text_count": 1248443,
+      "character_count": 266912540,
+      "checksum": "fnv1a64:b688c178c85698de",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000289.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1260950,
+      "text_count": 1260950,
+      "character_count": 266245975,
+      "checksum": "fnv1a64:fdb575fa713561d8",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000290.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1320268,
+      "text_count": 1320268,
+      "character_count": 266742893,
+      "checksum": "fnv1a64:464fcc8b6b7c1e6",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000291.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1251746,
+      "text_count": 1251746,
+      "character_count": 266784217,
+      "checksum": "fnv1a64:4dd67345e1a1fe8f",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000292.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1277695,
+      "text_count": 1277695,
+      "character_count": 266740156,
+      "checksum": "fnv1a64:2e06b5763b69c5eb",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000293.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1307074,
+      "text_count": 1307074,
+      "character_count": 266876428,
+      "checksum": "fnv1a64:c0863b7b56bf85c9",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000294.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1247613,
+      "text_count": 1247613,
+      "character_count": 266651096,
+      "checksum": "fnv1a64:830f4a19231394ba",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000295.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1289761,
+      "text_count": 1289761,
+      "character_count": 266531933,
+      "checksum": "fnv1a64:6502ef8db70afbc6",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000296.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1295450,
+      "text_count": 1295450,
+      "character_count": 266724158,
+      "checksum": "fnv1a64:416f441fe4bf9ab0",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000297.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1256807,
+      "text_count": 1256807,
+      "character_count": 266848555,
+      "checksum": "fnv1a64:61b7216f416983f7",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000298.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1302393,
+      "text_count": 1302393,
+      "character_count": 266563392,
+      "checksum": "fnv1a64:59a0563ffd3f8720",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000299.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1276522,
+      "text_count": 1276522,
+      "character_count": 267095752,
+      "checksum": "fnv1a64:c000823343df8d16",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000300.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1250106,
+      "text_count": 1250106,
+      "character_count": 267162352,
+      "checksum": "fnv1a64:4c4675650b646526",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "shard-000301.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 366294,
+      "text_count": 366294,
+      "character_count": 82539056,
+      "checksum": "fnv1a64:3283531f8ede0366",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "supplemental-conversations_with_kevin_deegan.txt",
+      "kind": "supplemental_corpus_text",
+      "included_in_training": true,
+      "record_count": 2907,
+      "text_count": 1643,
+      "character_count": 199486,
+      "checksum": "fnv1a64:3bc06d86936385ed",
+      "note": "Supplemental tokenizer corpus text placed beside the exported Parquet shards."
+    },
+    {
+      "relative_path": "exports/base_training/base_training.jsonl",
+      "kind": "base_training",
+      "included_in_training": true,
+      "record_count": 16,
+      "text_count": 10,
+      "character_count": 1265,
+      "checksum": "fnv1a64:532c78a06c0a7eee",
+      "note": "Base-training target texts reinforce neutral prose without the repeated instruction prompt."
+    },
+    {
+      "relative_path": "exports/contextualization/contextualization.jsonl",
+      "kind": "contextualization",
+      "included_in_training": true,
+      "record_count": 5,
+      "text_count": 6,
+      "character_count": 1567,
+      "checksum": "fnv1a64:10b73e10f13d4f3f",
+      "note": "Contextualization samples contribute attribution and uncertainty-preserving phrasing."
+    },
+    {
+      "relative_path": "exports/custom_verbalization/custom_verbalization.jsonl",
+      "kind": "custom_verbalization",
+      "included_in_training": true,
+      "record_count": 6,
+      "text_count": 8,
+      "character_count": 1166,
+      "checksum": "fnv1a64:131b7f5f3a465922",
+      "note": "Project verbalization examples contribute contract-grounded structured phrasing."
+    },
+    {
+      "relative_path": "exports/small_supervised/small_supervised.jsonl",
+      "kind": "small_supervised",
+      "included_in_training": true,
+      "record_count": 8,
+      "text_count": 6,
+      "character_count": 897,
+      "checksum": "fnv1a64:f76e0fd3dc87814a",
+      "note": "Small supervised samples contribute abstention and non-agentic refusal language without training on unsupported code/math prompts."
+    },
+    {
+      "relative_path": "C:/MINA/datasets",
+      "kind": "corpus_inventory",
+      "included_in_training": false,
+      "record_count": 0,
+      "text_count": 0,
+      "character_count": 0,
+      "checksum": "fnv1a64:14650fb0739d0383",
+      "note": "Raw filtered corpus inventory recorded for auditability. The tokenizer trainer consumes tokenizer-ready shard text from the configured corpus-text root rather than decoding Parquet directly."
+    }
+  ]
+}

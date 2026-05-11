@@ -1,0 +1,98 @@
+{
+  "tokenizer_id": "shared-shell-tokenizer",
+  "tokenizer_version": "tokenizer-v0001",
+  "tokenizer_type": "sentencepiece_bpe_v1",
+  "normalizer_name": "english_project_v1",
+  "requested_vocab_size": 512,
+  "learned_vocab_size": 512,
+  "special_token_count": 4,
+  "training_text_count": 9,
+  "held_out_text_count": 3,
+  "repeated_training_example_count": 13,
+  "total_training_characters": 819,
+  "total_held_out_characters": 309,
+  "byte_fallback_token_count": 0,
+  "held_out_token_count": 106,
+  "held_out_character_count": 309,
+  "average_characters_per_token": 2.9151,
+  "average_held_out_tokens_per_example": 35.3333,
+  "average_held_out_characters_per_token": 2.9151,
+  "special_tokens": {
+    "<bos>": 1,
+    "<eos>": 2,
+    "<pad>": 3,
+    "<unk>": 0
+  },
+  "source_files": [
+    {
+      "relative_path": "shard-000000.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 2,
+      "text_count": 2,
+      "character_count": 134,
+      "checksum": "fnv1a64:29e764441154d042",
+      "note": "Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline."
+    },
+    {
+      "relative_path": "supplemental-conversations.txt",
+      "kind": "parquet_corpus_text",
+      "included_in_training": true,
+      "record_count": 1,
+      "text_count": 1,
+      "character_count": 70,
+      "checksum": "fnv1a64:479d94138d741d34",
+      "note": "Supplemental tokenizer corpus text placed beside the exported Parquet shards."
+    },
+    {
+      "relative_path": "exports/base_training/base_training.jsonl",
+      "kind": "base_training",
+      "included_in_training": true,
+      "record_count": 1,
+      "text_count": 1,
+      "character_count": 88,
+      "checksum": "fnv1a64:a16b883b1bce8dfe",
+      "note": "Base-training target texts reinforce neutral prose without the repeated instruction prompt."
+    },
+    {
+      "relative_path": "exports/contextualization/contextualization.jsonl",
+      "kind": "contextualization",
+      "included_in_training": true,
+      "record_count": 2,
+      "text_count": 2,
+      "character_count": 194,
+      "checksum": "fnv1a64:4e1ad5642cfef834",
+      "note": "Contextualization samples contribute attribution and uncertainty-preserving phrasing."
+    },
+    {
+      "relative_path": "exports/custom_verbalization/custom_verbalization.jsonl",
+      "kind": "custom_verbalization",
+      "included_in_training": true,
+      "record_count": 1,
+      "text_count": 2,
+      "character_count": 225,
+      "checksum": "fnv1a64:1d741530d20c9393",
+      "note": "Project verbalization examples contribute contract-grounded structured phrasing."
+    },
+    {
+      "relative_path": "exports/small_supervised/small_supervised.jsonl",
+      "kind": "small_supervised",
+      "included_in_training": true,
+      "record_count": 2,
+      "text_count": 1,
+      "character_count": 108,
+      "checksum": "fnv1a64:64ce4c9713d93361",
+      "note": "Small supervised samples contribute abstention and non-agentic refusal language without training on unsupported code/math prompts."
+    },
+    {
+      "relative_path": "C:/MINA/tokenizer/tests/fixtures/tokenizer_repo/dataset",
+      "kind": "corpus_inventory",
+      "included_in_training": false,
+      "record_count": 1,
+      "text_count": 0,
+      "character_count": 30,
+      "checksum": "fnv1a64:3bdf829d065a818e",
+      "note": "Raw filtered corpus inventory recorded for auditability. The tokenizer trainer consumes tokenizer-ready shard text from the configured corpus-text root rather than decoding Parquet directly."
+    }
+  ]
+}

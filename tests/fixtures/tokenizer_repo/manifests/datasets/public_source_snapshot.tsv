@@ -1,0 +1,3 @@
+source_id	source_family	title	publisher	retrieval_uri	publication_date	license_class	license_id	language_tag	english_only	paraphrase_only	origin_type	raw_text	provenance_note
+public://fixture/river	EnglishWikipedia	River	Fixup	https://example.test/river	2026-05-04	AttributionRequired	CC-BY-SA-4.0	en	true	false	PublicSourceDerived	A river estuary forms where fresh water meets the sea and mixes into brackish water.	Fixture reviewed public prose.
+public://fixture/wetland	EnglishWikipedia	Wetland	Fixup	https://example.test/wetland	2026-05-04	AttributionRequired	CC-BY-SA-4.0	en	true	false	PublicSourceDerived	Wetlands are water-saturated ecosystems that often preserve biodiversity and filter excess nutrients.	Fixture reviewed public prose.

@@ -1,0 +1,31 @@
+{
+  "tokenizer_id": "shared-shell-tokenizer",
+  "tokenizer_version": "tokenizer-v0001",
+  "tokenizer_type": "sentencepiece_bpe_v1",
+  "trainer_backend": "sentencepiece",
+  "normalizer": "english_project_v1",
+  "corpus_text_root": "C:/MINA/tokenizer/tests/fixtures/tokenizer_repo/corpus",
+  "target_vocab_size": 512,
+  "max_piece_length": 24,
+  "max_sentence_length": 16384,
+  "sampled_sentence_count": 5000000,
+  "weights": {
+    "parquet_corpus": 1,
+    "base_training_output": 2,
+    "contextualization_input": 1,
+    "contextualization_output": 2,
+    "custom_verbalization_input": 1,
+    "custom_verbalization_output": 2,
+    "small_supervised_output": 2
+  },
+  "special_tokens": ["<pad>", "<bos>", "<eos>", "<unk>"],
+  "sentencepiece_options": {
+    "model_type": "bpe",
+    "character_coverage": 1.0,
+    "normalization_rule_name": "identity",
+    "remove_extra_whitespaces": false,
+    "byte_fallback": true,
+    "hard_vocab_limit": false,
+    "max_sentence_length": 16384
+  }
+}

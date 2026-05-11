@@ -1,0 +1,5 @@
+# MINA_TOKENIZER_CORPUS_INDEX_V1
+# corpus_root	C:/MINA/tokenizer/tests/fixtures/tokenizer_repo/corpus
+relative_path	kind	record_count	text_count	character_count	checksum	file_size	last_write_ticks	note
+shard-000000.txt	parquet_corpus_text	2	2	134	fnv1a64:29e764441154d042	136	-5024078025446741816	Tokenizer-ready corpus shard exported from the Parquet ingestion pipeline.
+supplemental-conversations.txt	supplemental_corpus_text	1	1	70	fnv1a64:479d94138d741d34	71	-5024078021949364116	Supplemental tokenizer corpus text placed beside the exported Parquet shards.
