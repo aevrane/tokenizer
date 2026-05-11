@@ -2,7 +2,7 @@
 
 ## Scope
 
-This repository is for the shared MINA tokenizer pipeline. Keep changes focused on:
+This repository is for the shared tokenizer pipeline. Keep changes focused on:
 
 - Parquet ingestion
 - corpus preparation
@@ -23,15 +23,15 @@ Do not mix unrelated shell, runtime, or model-training changes into this reposit
 ## Build
 
 ```text
-C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe -S C:\MINA\tokenizer -B C:\MINA\tokenizer\build -G "Visual Studio 17 2022" -DCMAKE_TOOLCHAIN_FILE="C:\Program Files\Microsoft Visual Studio\2022\Community\VC\vcpkg\scripts\buildsystems\vcpkg.cmake" -DCMAKE_PREFIX_PATH="C:\MINA\tokenizer\vcpkg_installed\x64-windows"
-C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe --build C:\MINA\tokenizer\build --config Debug
+C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe -S C:\Tokenizer -B C:\Tokenizer\build -G "Visual Studio 17 2022" -DCMAKE_TOOLCHAIN_FILE="C:\Program Files\Microsoft Visual Studio\2022\Community\VC\vcpkg\scripts\buildsystems\vcpkg.cmake" -DCMAKE_PREFIX_PATH="C:\Tokenizer\vcpkg_installed\x64-windows"
+C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe --build C:\Tokenizer\build --config Debug
 ```
 
 ## Test
 
 ```text
-$env:PATH = "C:\MINA\tokenizer\build\Debug;C:\MINA\tokenizer\vcpkg_installed\x64-windows\debug\bin;C:\MINA\tokenizer\vcpkg_installed\x64-windows\bin;" + $env:PATH
-C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\ctest.exe --test-dir C:\MINA\tokenizer\build -C Debug --output-on-failure
+$env:PATH = "C:\Tokenizer\build\Debug;C:\Tokenizer\vcpkg_installed\x64-windows\debug\bin;C:\Tokenizer\vcpkg_installed\x64-windows\bin;" + $env:PATH
+C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\ctest.exe --test-dir C:\Tokenizer\build -C Debug --output-on-failure
 ```
 
 ## Change Expectations
