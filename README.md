@@ -28,11 +28,6 @@ Current project scope:
 - shared tokenizer training
 - report and sample generation
 
-Not yet included:
-
-- corpus sanitation or dedup pipeline
-- published license selection
-
 ## Quick Start
 
 ### 1. Install Dependencies
