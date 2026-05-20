@@ -287,6 +287,20 @@ std::vector<int> SharedTokenizer::Encode(const std::string& input) const
     return tokenIds;
 }
 
+std::vector<int> SharedTokenizer::EncodeNormalized(const std::string& normalizedInput) const
+{
+    if (!impl)
+    {
+        throw std::runtime_error("Tokenizer model is not loaded.");
+    }
+
+    std::vector<int> tokenIds;
+    CheckSentencePieceStatus(
+        impl->processor.Encode(normalizedInput, &tokenIds),
+        "Tokenizer encode failed");
+    return tokenIds;
+}
+
 std::string SharedTokenizer::Decode(const std::vector<int>& tokenIds) const
 {
     if (!impl)

@@ -8,6 +8,7 @@ This repository provides:
 - shard and supplemental corpus handling
 - reusable corpus scan/cache indexing
 - shared SentencePiece BPE tokenizer training in C++
+- resumable text-shard to uint16 token conversion in C++
 - tokenizer runtime encode/decode/inspect support
 - manifests, reports, and debugging artifacts
 
@@ -61,6 +62,27 @@ C:\Tokenizer\build\Debug\tokenizer_parquet_ingest_tool.exe --parquet-root C:\Dat
 C:\Tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\SourceRepo --dataset-root C:\Datasets --output-root C:\Tokenizer --corpus-root C:\CorpusShards --scan-only
 C:\Tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\SourceRepo --dataset-root C:\Datasets --output-root C:\Tokenizer --corpus-root C:\CorpusShards
 C:\Tokenizer\build\Debug\tokenizer_inspect_tool.exe --model-path C:\Tokenizer\manifests\tokenizer\shared_tokenizer.model --text "The available inputs do not provide enough evidence, so the shell should preserve uncertainty."
+C:\Tokenizer\build\Debug\tokenizer_convert_tool.exe --input-root D:\CorpusShards --output-root D:\ConvertedTokens --tokenizer-root C:\MINA\tokenizer
+```
+
+### 5. Use Release For Real Token Conversion Runs
+
+`Debug` builds are appropriate for development, tests, and short local validation.
+
+For real corpus conversion runs, use `Release`.
+
+The shard-to-token pipeline is CPU-heavy and Release mode is materially faster for large corpora. In the real corpus benchmark used during development, switching from `Debug` to `Release` improved end-to-end shard conversion throughput by more than `10x`.
+
+Build the release converter:
+
+```text
+C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe --build C:\Tokenizer\build --config Release --target tokenizer_convert_tool tokenizer_inspect_tool
+```
+
+Set Release runtime DLL paths in PowerShell:
+
+```text
+$env:PATH = "C:\Tokenizer\build\Release;C:\Tokenizer\vcpkg_installed\x64-windows\bin;" + $env:PATH
 ```
 
 ## Common Recipes
@@ -120,6 +142,55 @@ C:\Tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\SourceRe
 C:\Tokenizer\build\Debug\tokenizer_inspect_tool.exe --model-path C:\Tokenizer\manifests\tokenizer\shared_tokenizer.model --text "Source public://pmc/PMC4457059 reports that the claim is tied to the described study."
 ```
 
+### Inspect A Multiline Text Sample From A File
+
+```text
+C:\Tokenizer\build\Release\tokenizer_inspect_tool.exe --model-path C:\Tokenizer\manifests\tokenizer\shared_tokenizer.model --text-file C:\Temp\sample.txt
+```
+
+### Decode The First N Tokens From A Token File
+
+```text
+C:\Tokenizer\build\Release\tokenizer_inspect_tool.exe --model-path C:\Tokenizer\manifests\tokenizer\shared_tokenizer.model --token-file D:\ConvertedTokens\tokens\supplemental-conversations_with_kevin_deegan.tokens.bin --token-count 436
+```
+
+### Convert Text Shards Into Binary Token Files
+
+```text
+$env:PATH = "C:\Tokenizer\build\Debug;C:\Tokenizer\vcpkg_installed\x64-windows\debug\bin;C:\Tokenizer\vcpkg_installed\x64-windows\bin;" + $env:PATH
+C:\Tokenizer\build\Debug\tokenizer_convert_tool.exe --input-root D:\CorpusShards --output-root D:\ConvertedTokens --tokenizer-root C:\MINA\tokenizer --worker-count auto --cpu-mode full
+```
+
+### Benchmark One File With Parallel Section Workers
+
+```text
+$env:PATH = "C:\Tokenizer\build\Debug;C:\Tokenizer\vcpkg_installed\x64-windows\debug\bin;C:\Tokenizer\vcpkg_installed\x64-windows\bin;" + $env:PATH
+C:\Tokenizer\build\Debug\tokenizer_convert_tool.exe --input-root D:\CorpusShards --output-root D:\ConvertedTokens --tokenizer-root C:\MINA\tokenizer --parallel-mode sections --section-count 20 --worker-count auto --cpu-mode full --max-files 1 --progress-interval-seconds 60
+```
+
+### Run The Full Corpus Conversion In Release
+
+```text
+$env:PATH = "C:\Tokenizer\build\Release;C:\Tokenizer\vcpkg_installed\x64-windows\bin;" + $env:PATH
+C:\Tokenizer\build\Release\tokenizer_convert_tool.exe --input-root D:\CorpusShards --output-root D:\ConvertedTokens --tokenizer-root C:\MINA\tokenizer --parallel-mode sections --section-count 20 --worker-count auto --cpu-mode full --progress-interval-seconds 180
+```
+
+### Resume A Token Conversion Run
+
+```text
+$env:PATH = "C:\Tokenizer\build\Debug;C:\Tokenizer\vcpkg_installed\x64-windows\debug\bin;C:\Tokenizer\vcpkg_installed\x64-windows\bin;" + $env:PATH
+C:\Tokenizer\build\Debug\tokenizer_convert_tool.exe --input-root D:\CorpusShards --output-root D:\ConvertedTokens --tokenizer-root C:\MINA\tokenizer
+```
+
+### Inspect Token Conversion Progress And Reports
+
+```text
+Get-Content D:\ConvertedTokens\progress.json
+Get-Content D:\ConvertedTokens\conversion_report.md
+Get-Content D:\ConvertedTokens\token_manifest.json
+Get-Content D:\ConvertedTokens\conversion.log -Tail 50 -Wait
+```
+
 ### View Reports
 
 ```text
@@ -152,6 +223,15 @@ Training defaults:
 - corpus root: `C:\CorpusShards`
 - output root: `C:\Tokenizer`
 - default model path: `C:\Tokenizer\manifests\tokenizer\shared_tokenizer.model`
+
+Conversion defaults:
+
+- input root: `D:\CorpusShards`
+- output root: `D:\ConvertedTokens`
+- tokenizer root: `C:\MINA\tokenizer`
+- section count: `20`
+- worker count: auto-detected logical processors
+- recommended production build: `Release`
 
 Parquet ingest defaults:
 

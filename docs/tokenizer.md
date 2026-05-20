@@ -9,6 +9,7 @@ It provides three main capabilities:
 1. Parquet corpus ingestion in C++
 2. Shared tokenizer training in C++
 3. Shared tokenizer runtime load/encode/decode/inspect support in C++
+4. Resumable text-shard to uint16 token conversion in C++
 
 The intended usage pattern is:
 
@@ -36,7 +37,13 @@ Important executables after a Debug build:
 - `C:\Tokenizer\build\Debug\tokenizer_parquet_ingest_tool.exe`
 - `C:\Tokenizer\build\Debug\tokenizer_train_tool.exe`
 - `C:\Tokenizer\build\Debug\tokenizer_inspect_tool.exe`
+- `C:\Tokenizer\build\Debug\tokenizer_convert_tool.exe`
 - `C:\Tokenizer\build\Debug\tokenizer_tests.exe`
+
+Important executables after a Release build:
+
+- `C:\Tokenizer\build\Release\tokenizer_convert_tool.exe`
+- `C:\Tokenizer\build\Release\tokenizer_inspect_tool.exe`
 
 ## Dependencies
 
@@ -67,6 +74,12 @@ Build:
 C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe --build C:\Tokenizer\build --config Debug
 ```
 
+Release build for production corpus conversion:
+
+```text
+C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe --build C:\Tokenizer\build --config Release --target tokenizer_convert_tool tokenizer_inspect_tool
+```
+
 Run tests:
 
 ```text
@@ -88,6 +101,12 @@ If you run them manually in `cmd.exe`, set:
 set PATH=C:\Tokenizer\build\Debug;C:\Tokenizer\vcpkg_installed\x64-windows\debug\bin;C:\Tokenizer\vcpkg_installed\x64-windows\bin;%PATH%
 ```
 
+For Release builds:
+
+```text
+$env:PATH = "C:\Tokenizer\build\Release;C:\Tokenizer\vcpkg_installed\x64-windows\bin;" + $env:PATH
+```
+
 ## High-Level Workflow
 
 Typical full workflow:
@@ -106,6 +125,620 @@ C:\Tokenizer\build\Debug\tokenizer_parquet_ingest_tool.exe --parquet-root C:\Dat
 C:\Tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\SourceRepo --dataset-root C:\Datasets --output-root C:\Tokenizer --corpus-root C:\CorpusShards --scan-only
 C:\Tokenizer\build\Debug\tokenizer_train_tool.exe --source-repo-root C:\SourceRepo --dataset-root C:\Datasets --output-root C:\Tokenizer --corpus-root C:\CorpusShards
 C:\Tokenizer\build\Debug\tokenizer_inspect_tool.exe --model-path C:\Tokenizer\manifests\tokenizer\shared_tokenizer.model --text "The available inputs do not provide enough evidence, so the shell should preserve uncertainty."
+C:\Tokenizer\build\Debug\tokenizer_convert_tool.exe --input-root D:\CorpusShards --output-root D:\ConvertedTokens --tokenizer-root C:\MINA\tokenizer
+```
+
+## Text Shard Conversion
+
+### What The Conversion Tool Does
+
+`tokenizer_convert_tool.exe`:
+
+- discovers eligible `.txt` and `.text` shard files in deterministic lexical order
+- loads the already-trained shared tokenizer from `C:\MINA\tokenizer`
+- encodes each input file into a matching raw `uint16` little-endian token stream
+- writes one binary token file per input text file under `D:\ConvertedTokens\tokens`
+- writes temp files first and only renames them into place after a full-file conversion succeeds
+- records durable progress, a file-order manifest, a per-file manifest, and a Markdown report
+- supports safe stop and resume at file boundaries
+
+This tool is specifically for preparing already-ingested plain-text shard files for downstream language-model training.
+
+It does **not**:
+
+- retrain the tokenizer
+- change tokenizer vocabulary or normalization rules
+- attempt mid-file resume from a token offset
+- write final output files before the full source file succeeds
+
+### Primary Use Cases
+
+Use the conversion tool when:
+
+1. you already have tokenizer-ready text shard files
+2. you want deterministic binary token files for training
+3. you need stop-and-resume safety for long multi-file runs
+4. you want one binary output file per source text shard
+5. you need durable manifests and reports for later training jobs
+
+Typical examples:
+
+- convert `D:\CorpusShards` into `D:\ConvertedTokens` for a transformer training job
+- convert only the first `1` or `5` files as a smoke test before launching the full corpus run
+- stop a long run with `Ctrl+C`, inspect unknown-token behavior, then resume
+- verify that token file sizes and token counts look plausible before training begins
+- decode a token-file prefix back into normalized text for inspection and spot verification
+
+### Input Assumptions
+
+The converter expects ordinary text shard files, typically one logical training record per line.
+
+Important assumption:
+
+- the current sectioned conversion path divides a file by **line count**
+- each section is tokenized separately
+- the resulting token stream is equivalent to tokenizing the file as newline-delimited records
+
+That is appropriate for corpus shard files produced by the project ingestion flow, where line boundaries are already meaningful record boundaries.
+
+### Output Format
+
+Each `.tokens.bin` file is a raw sequence of little-endian `uint16` token ids:
+
+- no header
+- no footer
+- no per-record framing
+- exactly `2` bytes per token
+
+If a file contains `N` tokens, its output size is:
+
+```text
+2 * N bytes
+```
+
+This is why binary token files are often materially smaller than the original text files.
+
+### Deterministic Mapping Rules
+
+The converter preserves a deterministic mapping from input file to output file:
+
+- input discovery is lexical by relative path
+- output file paths mirror the input tree under `tokens\`
+- `.txt` and `.text` files are converted to `.tokens.bin`
+
+Examples:
+
+```text
+D:\CorpusShards\shard-000000.txt
+-> D:\ConvertedTokens\tokens\shard-000000.tokens.bin
+
+D:\CorpusShards\nested\batch-01.txt
+-> D:\ConvertedTokens\tokens\nested\batch-01.tokens.bin
+```
+
+### Default Conversion Paths
+
+- input root: `D:\CorpusShards`
+- output root: `D:\ConvertedTokens`
+- tokenizer root: `C:\MINA\tokenizer`
+
+### Conversion Output Layout
+
+Under the output root:
+
+- token files: `tokens\**\*.tokens.bin`
+- durable progress: `progress.json`
+- discovered ordering manifest: `ordered_files.tsv`
+- durable per-file status log: `file_records.tsv`
+- machine-readable token manifest: `token_manifest.json`
+- human-readable report: `conversion_report.md`
+- appended runtime log: `conversion.log`
+
+### Conversion CLI Syntax
+
+```text
+tokenizer_convert_tool --input-root <path> [--output-root <path>] [--tokenizer-root <path>] [--progress-interval-seconds <n>] [--section-count <count>] [--worker-count <auto|n>] [--cpu-mode <full|half>] [--parallel-mode <files|sections>] [--max-files <count>] [--no-recursive] [--no-resume] [--stop-on-failure]
+```
+
+### Real Conversion Example
+
+```text
+$env:PATH = "C:\Tokenizer\build\Debug;C:\Tokenizer\vcpkg_installed\x64-windows\debug\bin;C:\Tokenizer\vcpkg_installed\x64-windows\bin;" + $env:PATH
+C:\Tokenizer\build\Debug\tokenizer_convert_tool.exe --input-root D:\CorpusShards --output-root D:\ConvertedTokens --tokenizer-root C:\MINA\tokenizer
+```
+
+### Resume A Conversion Run
+
+Run the same command again. The converter resumes from the next not-yet-completed file and deletes any stale temp or partial output for the current in-progress file before rewriting it.
+
+### Every Conversion Flag
+
+`--input-root <path>`
+
+- sets the source text shard root
+- default: `D:\CorpusShards`
+- example:
+
+```text
+C:\Tokenizer\build\Debug\tokenizer_convert_tool.exe --input-root E:\ShardExports
+```
+
+`--output-root <path>`
+
+- sets the token output workspace
+- default: `D:\ConvertedTokens`
+- example:
+
+```text
+C:\Tokenizer\build\Debug\tokenizer_convert_tool.exe --input-root D:\CorpusShards --output-root E:\TokenRuns\run-01
+```
+
+`--tokenizer-root <path>`
+
+- points to the shared tokenizer repo/artifact root
+- used to load:
+  - `manifests\tokenizer\shared_tokenizer.model`
+  - `manifests\tokenizer\shared_tokenizer.manifest.json`
+- default: `C:\MINA\tokenizer`
+
+`--progress-interval-seconds <n>`
+
+- controls time-based terminal heartbeat frequency
+- default: `240`
+- useful values:
+  - `60` for once per minute
+  - `180` for every 3 minutes
+  - `300` for every 5 minutes
+
+`--section-count <count>`
+
+- divides each file into approximately this many line-based tokenization sections
+- default: `20`
+- higher values:
+  - more frequent intra-file progress
+  - smaller tokenization batches
+  - somewhat more overhead
+- lower values:
+  - less frequent intra-file progress
+  - larger tokenization batches
+- potentially better throughput on some corpora
+
+`--worker-count <auto|n>`
+
+- controls how many independent files may be converted in parallel
+- default: `auto`
+- when `auto` is used, the converter derives the worker count from the local logical processor count
+- each worker loads its own tokenizer instance and processes separate files
+
+Examples:
+
+```text
+C:\Tokenizer\build\Debug\tokenizer_convert_tool.exe --input-root D:\CorpusShards --output-root D:\ConvertedTokens --worker-count auto
+C:\Tokenizer\build\Debug\tokenizer_convert_tool.exe --input-root D:\CorpusShards --output-root D:\ConvertedTokens --worker-count 4
+```
+
+`--cpu-mode <full|half>`
+
+- only applies when `--worker-count auto` is in effect
+- `full`
+  - use all detected logical processors
+- `half`
+  - use about half of the detected logical processors, rounded up
+- useful when you want the converter to stay responsive while leaving CPU headroom for other work
+
+`--parallel-mode <files|sections>`
+
+- selects how parallel workers are applied
+- `files`
+  - default mode
+  - up to `N` different shard files are processed at the same time
+  - best for overall corpus throughput
+- `sections`
+  - one file is processed at a time
+  - workers cooperate on different sections of that file
+  - best when you want faster single-file completion and cleaner file-boundary stopping points
+  - this became the preferred production mode for large-corpus conversion after benchmarking on the real shard set
+
+`--max-files <count>`
+
+- process only the first `N` discovered files, then stop cleanly
+- useful for:
+  - smoke tests
+  - size sanity checks
+  - overnight batching
+  - cautious staged rollout
+
+Examples:
+
+```text
+C:\Tokenizer\build\Debug\tokenizer_convert_tool.exe --input-root D:\CorpusShards --output-root D:\ConvertedTokens --max-files 1
+C:\Tokenizer\build\Debug\tokenizer_convert_tool.exe --input-root D:\CorpusShards --output-root D:\ConvertedTokens --max-files 5
+```
+
+`--no-recursive`
+
+- disables recursive discovery
+- only the top-level input directory is scanned
+
+`--no-resume`
+
+- ignore any existing progress file
+- start a fresh run
+- use this only when you intentionally want to discard prior run state
+
+`--stop-on-failure`
+
+- stop immediately when one source file fails
+- default behavior is to record the error and continue to later files
+
+### Sectioned Conversion Behavior
+
+The current converter no longer tokenizes an entire large shard in one monolithic call.
+
+Instead, for each file it now:
+
+1. performs a single read pass over the source text
+2. normalizes line content during that read pass
+3. stores one contiguous normalized text buffer plus line start offsets
+4. divides the file into roughly `N` sections by line count, where `N` is `--section-count`
+5. lets section workers slice their assigned section text from the shared normalized buffer
+6. appends ordered section output to the temp `.tokens.bin.tmp` file
+7. renames the temp file to the final `.tokens.bin` only after all sections complete
+
+This gives:
+
+- real mid-file progress
+- lower peak memory pressure than full-file one-shot tokenization
+- lower allocator churn than storing one normalized string per line
+- better operator visibility on very large shard files
+
+Across the corpus, the converter can run in two parallel layouts:
+
+- `--parallel-mode files`
+  - each worker claims the next pending file in deterministic discovery order
+  - workers do not share output files
+  - output naming remains deterministic
+- `--parallel-mode sections`
+  - a single file is partitioned into line-based sections
+  - section workers tokenize different sections of that one file in parallel
+  - the temp token file is still written in proper section order before final rename
+
+In both modes:
+
+- resume still works at file boundaries only
+- any file left partially processed is restarted from the beginning on resume
+
+### Conversion Performance Notes
+
+The shard conversion pipeline is highly sensitive to build configuration.
+
+Observed production behavior:
+
+- `Debug` builds are suitable for validation, tests, and short smoke runs
+- `Release` builds are the correct mode for real corpus conversion
+- on the live corpus used during development, moving the section-mode converter from `Debug` to `Release` improved throughput by more than `10x`
+
+Operational recommendation:
+
+1. use `Debug` for correctness work
+2. use `Release` for long production conversion runs
+3. avoid changing converter code once a stable Release build is ready for the full corpus pass
+
+### Terminal Progress Semantics
+
+You should now expect progress lines that include fields like:
+
+- `file 1/303`
+- `current="w1:shard-000000.txt | w2:shard-000001.txt"`
+- `phase=counting_lines|tokenizing|writing|parallel`
+- `workers=2/4`
+- `section=1/10`
+  - with the new default this is usually `1/20`
+- `file_bytes=26217304/267791632`
+- `file_bytes_pct=9.79%`
+- `lines=136758`
+- `file_tokens=0`
+- `output_bytes=0`
+- `tokens_written=0`
+- `file_elapsed=3m 0s`
+- `elapsed=3m 0s`
+
+Interpretation:
+
+- `phase=counting_lines`
+  - it is making the initial line pass
+- `phase=tokenizing`
+  - it is currently tokenizing one line-based section
+- `phase=writing`
+  - it already has token ids for the section and is appending them to the temp output file
+- `phase=parallel`
+  - more than one worker is active, and `current` is a short active-file summary
+- `section=3/10`
+  - it is working on the third section of the current file
+- `workers=2/4`
+  - two workers are currently active out of four configured workers
+- `file_tokens`
+  - cumulative tokens produced for the current file so far
+- `tokens_written`
+  - cumulative tokens durably completed across fully finished source files
+
+In `--parallel-mode sections`, the active worker summary may show the same filename more than once because multiple workers are cooperating on different sections of that one file.
+
+Important note:
+
+- `tokens_written` is intentionally conservative
+- it advances only after a whole source file is complete
+- section-level writes go to the temp file, not the final file
+
+### Durable Progress File Semantics
+
+`progress.json` is the main durable checkpoint file.
+
+Important fields:
+
+- `status`
+- `tokenizer_id`
+- `tokenizer_version`
+- `tokenizer_model_hash`
+- `current_file_relative_path`
+- `current_file_phase`
+- `current_section_index`
+- `current_section_count`
+- `current_file_bytes_processed`
+- `current_file_total_bytes`
+- `current_file_lines_processed`
+- `current_file_tokens_produced`
+- `current_file_output_bytes_written`
+- `configured_worker_count`
+- `active_worker_count`
+- `completed_file_count`
+- `failed_file_count`
+- `total_tokens_written`
+
+This file is intended for operator inspection first and automation second.
+
+Important implementation detail:
+
+- `progress.json` is no longer rewritten on every non-durable heartbeat during `reading_sections`
+- terminal output can still update every configured interval without forcing a durable progress-file write
+- durable progress is still refreshed on meaningful boundaries and forced events
+
+This change was added specifically to avoid Windows rename contention on `progress.json.tmp -> progress.json` during long runs.
+
+### Stop And Resume Guarantees
+
+You can safely stop the converter with `Ctrl+C`.
+
+Guaranteed behavior:
+
+- only fully completed source files count as completed
+- if interruption happens during file `102`, resume restarts file `102` from the beginning
+- any stale temp or partial output for pending files is deleted before reprocessing
+- final `.tokens.bin` files represent only fully completed source files
+
+Resume intentionally does **not**:
+
+- restart from a partial token offset
+- trust a partially written temp file
+- try to recover partially completed section output from the previous run
+
+This is a deliberate safety choice.
+
+### Inspect Conversion Progress
+
+```text
+Get-Content D:\ConvertedTokens\progress.json
+Get-Content D:\ConvertedTokens\conversion_report.md
+Get-Content D:\ConvertedTokens\token_manifest.json
+Get-Content D:\ConvertedTokens\conversion.log -Tail 50 -Wait
+```
+
+Additional useful checks:
+
+```text
+Get-Process tokenizer_convert_tool | Select-Object Id,CPU,WorkingSet64,StartTime
+Get-ChildItem D:\ConvertedTokens\tokens -Recurse
+Get-Content D:\ConvertedTokens\file_records.tsv
+```
+
+### Interpreting Common Situations
+
+#### Situation: Progress lines repeat with the same section for several minutes
+
+If `phase=tokenizing` and the same `section=X/Y` line repeats:
+
+- the converter is inside the tokenizer for that section
+- CPU time should continue increasing
+- the temp output file may not grow until tokenization finishes and the write phase begins
+
+This is normal for large sections.
+
+#### Situation: `file_bytes_pct=100.00%` but `file_tokens=0`
+
+That means:
+
+- reading is complete
+- the current tokenization section is still running
+- no section output has been written yet
+
+This is normal during a long tokenization section.
+
+#### Situation: Temp output file exists but final output file does not
+
+That means:
+
+- the converter is still working on the current source file
+- or it was interrupted mid-file
+
+On resume, the stale temp file will be discarded and the current source file will restart from the beginning.
+
+#### Situation: Token file size is much smaller than the original text
+
+That is usually expected.
+
+Reason:
+
+- the token file stores `uint16` ids, so each token is `2` bytes
+- English-like text commonly averages more than `2` text bytes per token
+
+#### Situation: CPU is climbing but counters look static
+
+Check whether:
+
+- `phase=tokenizing`
+- `CPU` time keeps increasing in `Get-Process`
+
+If yes, the tokenizer is active even if section-level counters have not advanced yet.
+
+### Troubleshooting
+
+#### Real conversion is much slower than benchmarks
+
+Check whether you are accidentally running `Debug`.
+
+The converter is substantially faster in `Release`.
+
+Recommended production command pattern:
+
+```text
+$env:PATH = "C:\Tokenizer\build\Release;C:\Tokenizer\vcpkg_installed\x64-windows\bin;" + $env:PATH
+C:\Tokenizer\build\Release\tokenizer_convert_tool.exe --input-root D:\CorpusShards --output-root D:\ConvertedTokens --tokenizer-root C:\MINA\tokenizer --parallel-mode sections --section-count 20 --worker-count auto --cpu-mode full --progress-interval-seconds 180
+```
+
+#### `reading_sections` takes far too long
+
+Likely causes:
+
+- running a `Debug` build on a very large shard
+- too-frequent progress bookkeeping in an older build
+- stale executable still being launched after a rebuild
+
+Expected healthy behavior in the optimized implementation:
+
+- `reading_sections` should move quickly relative to full-file tokenization
+- Release mode should be dramatically faster than Debug mode
+
+If read progress still appears pathological:
+
+1. confirm the executable path is the current `Release` binary
+2. confirm the runtime `PATH` points at `build\Release`
+3. inspect `progress.json` and `conversion.log`
+
+#### `progress.json.tmp` rename fails with access denied on Windows
+
+This was an observed real-world failure mode during development.
+
+Current mitigations:
+
+- retry loop on metadata-file temp-to-final rename
+- fewer durable `progress.json` writes during non-durable heartbeat updates
+
+Operational advice:
+
+- avoid keeping `progress.json` open in editors or preview panes during the run
+- avoid aggressive tail/watch tooling on `progress.json`
+- prefer watching terminal progress or `conversion.log` for live activity
+
+#### The converter starts but no files complete for a long time
+
+Check:
+
+1. `Get-Content D:\ConvertedTokens\progress.json`
+2. `Get-Process tokenizer_convert_tool | Select-Object Id,CPU,WorkingSet64,StartTime`
+
+If `CPU` is increasing and `current_file_phase=tokenizing`, the current section is still being processed.
+
+Actions:
+
+- lower `--section-count` only if you want fewer, larger sections
+- raise `--section-count` if you want smaller tokenization batches and more visibility
+- raise `--worker-count` or use `--cpu-mode full` if the machine has spare CPU capacity
+- use `--cpu-mode half` if you want to leave headroom for other applications
+- use `--parallel-mode sections` if you want to finish individual files faster instead of maximizing whole-corpus throughput
+- use `--max-files 1` to validate behavior on one shard first
+
+#### The process exits immediately
+
+Common causes:
+
+- runtime DLL path not set
+- wrong `--tokenizer-root`
+- missing shared tokenizer model or manifest
+
+Fix:
+
+```text
+$env:PATH = "C:\Tokenizer\build\Debug;C:\Tokenizer\vcpkg_installed\x64-windows\debug\bin;C:\Tokenizer\vcpkg_installed\x64-windows\bin;" + $env:PATH
+```
+
+Then rerun the converter.
+
+#### Resume refuses to continue and reports metadata mismatch
+
+Possible causes:
+
+- changed tokenizer model
+- changed tokenizer manifest version/id
+- changed input root or output root
+- changed discovered input ordering
+
+Fix:
+
+- if you want to continue the original run, restore the original tokenizer and input tree
+- if you intentionally changed the setup, start a fresh run with `--no-resume`
+
+#### Unknown-token counts are unexpectedly high
+
+Inspect:
+
+- terminal warnings
+- `conversion_report.md`
+- `token_manifest.json`
+
+Unexpected unknown-token spikes may indicate:
+
+- data outside the expected corpus profile
+- normalization mismatches
+- broken shard content
+- a tokenizer artifact mismatch
+
+#### Memory usage is higher than expected
+
+The current converter is section-based rather than full-file based, so peak memory should be lower than the earlier monolithic implementation.
+
+If memory is still too high:
+
+- increase `--section-count`
+- lower `--worker-count`
+- use `--cpu-mode half`
+- prefer `--parallel-mode files` over `--parallel-mode sections`
+- reduce concurrent system load
+- run fewer files for validation with `--max-files`
+
+### Recommended Operating Patterns
+
+For a first smoke test:
+
+```text
+C:\Tokenizer\build\Debug\tokenizer_convert_tool.exe --input-root D:\CorpusShards --output-root D:\ConvertedTokens --tokenizer-root C:\MINA\tokenizer --max-files 1 --progress-interval-seconds 60
+```
+
+For a single-file speed benchmark:
+
+```text
+C:\Tokenizer\build\Debug\tokenizer_convert_tool.exe --input-root D:\CorpusShards --output-root D:\ConvertedTokens --tokenizer-root C:\MINA\tokenizer --parallel-mode sections --section-count 20 --worker-count auto --cpu-mode full --max-files 1 --progress-interval-seconds 60
+```
+
+For a cautious batch:
+
+```text
+C:\Tokenizer\build\Debug\tokenizer_convert_tool.exe --input-root D:\CorpusShards --output-root D:\ConvertedTokens --tokenizer-root C:\MINA\tokenizer --max-files 5 --section-count 20 --progress-interval-seconds 180 --cpu-mode half
+```
+
+For a full run:
+
+```text
+C:\Tokenizer\build\Debug\tokenizer_convert_tool.exe --input-root D:\CorpusShards --output-root D:\ConvertedTokens --tokenizer-root C:\MINA\tokenizer --section-count 20 --progress-interval-seconds 180 --worker-count auto --cpu-mode full
 ```
 
 ## Parquet Ingestion
@@ -770,7 +1403,7 @@ Model files:
 ### Inspect CLI Syntax
 
 ```text
-tokenizer_inspect_tool [--model-path <path>] [--text <value>]
+tokenizer_inspect_tool [--model-path <path>] [--text <value>] [--text-file <path>] [--token-file <path>] [--token-count <count>]
 ```
 
 ### Default Inspect Behavior
@@ -805,6 +1438,27 @@ Inspect a specific model and sentence:
 ```text
 C:\Tokenizer\build\Debug\tokenizer_inspect_tool.exe --model-path C:\Tokenizer\manifests\tokenizer\shared_tokenizer.model --text "Source public://pmc/PMC4457059 reports that the claim is tied to the described study."
 ```
+
+Inspect multiline text from a file:
+
+```text
+C:\Tokenizer\build\Release\tokenizer_inspect_tool.exe --model-path C:\Tokenizer\manifests\tokenizer\shared_tokenizer.model --text-file C:\Temp\sample.txt
+```
+
+Decode the first `N` tokens from a binary token file:
+
+```text
+C:\Tokenizer\build\Release\tokenizer_inspect_tool.exe --model-path C:\Tokenizer\manifests\tokenizer\shared_tokenizer.model --token-file D:\ConvertedTokens\tokens\supplemental-conversations_with_kevin_deegan.tokens.bin --token-count 436
+```
+
+### Inspect Tool Use Cases
+
+The inspect tool is now useful for:
+
+- ordinary text encode/decode inspection
+- multiline text-file inspection without fragile shell quoting
+- decoding a prefix of a real `.tokens.bin` file back into normalized text
+- visual spot-checking of converted training inputs against their source text
 
 Show help:
 

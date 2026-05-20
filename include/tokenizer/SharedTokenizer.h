@@ -40,6 +40,9 @@ public:
     std::vector<int> Encode(const std::string& input) const;
 
     [[nodiscard]]
+    std::vector<int> EncodeNormalized(const std::string& normalizedInput) const;
+
+    [[nodiscard]]
     std::string Decode(const std::vector<int>& tokenIds) const;
 
     [[nodiscard]]

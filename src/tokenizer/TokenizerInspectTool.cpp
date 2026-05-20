@@ -1,5 +1,7 @@
 #include <filesystem>
+#include <fstream>
 #include <iostream>
+#include <sstream>
 #include <stdexcept>
 #include <string>
 #include <vector>
@@ -23,9 +25,45 @@ void ConfigureConsoleUtf8()
 void PrintUsage()
 {
     std::cout
-        << "Usage: tokenizer_inspect_tool [--model-path <path>] [--text <value>]\n"
+        << "Usage: tokenizer_inspect_tool [--model-path <path>] [--text <value>] [--text-file <path>]\n"
+        << "                            [--token-file <path>] [--token-count <count>]\n"
         << "Defaults:\n"
         << "  model-path: C:\\Tokenizer\\manifests\\tokenizer\\shared_tokenizer.model\n";
+}
+
+std::string ReadTextFile(const std::filesystem::path& path)
+{
+    std::ifstream stream(path, std::ios::binary);
+    if (!stream.is_open())
+    {
+        throw std::runtime_error("Unable to read text file: " + path.string());
+    }
+
+    std::ostringstream buffer;
+    buffer << stream.rdbuf();
+    return buffer.str();
+}
+
+std::vector<int> ReadTokenFile(const std::filesystem::path& path, const std::size_t maxTokenCount)
+{
+    std::ifstream stream(path, std::ios::binary);
+    if (!stream.is_open())
+    {
+        throw std::runtime_error("Unable to read token file: " + path.string());
+    }
+
+    std::vector<int> tokenIds;
+    std::uint16_t tokenId = 0;
+    while (stream.read(reinterpret_cast<char*>(&tokenId), sizeof(tokenId)))
+    {
+        tokenIds.push_back(static_cast<int>(tokenId));
+        if (maxTokenCount > 0 && tokenIds.size() >= maxTokenCount)
+        {
+            break;
+        }
+    }
+
+    return tokenIds;
 }
 }
 
@@ -36,7 +74,10 @@ int main(int argc, char** argv)
         ConfigureConsoleUtf8();
 
         std::filesystem::path modelPath = std::filesystem::path("C:\\Tokenizer\\manifests\\tokenizer\\shared_tokenizer.model");
+        std::filesystem::path tokenFilePath;
         std::string text = "The available inputs do not provide enough evidence, so the shell should preserve uncertainty.";
+        std::size_t tokenCount = 0;
+        bool decodeTokenFile = false;
 
         if (argc > 1 && argv[1][0] != '-')
         {
@@ -59,6 +100,19 @@ int main(int argc, char** argv)
                 {
                     text = argv[++index];
                 }
+                else if (argument == "--text-file" && index + 1 < argc)
+                {
+                    text = ReadTextFile(std::filesystem::path(argv[++index]));
+                }
+                else if (argument == "--token-file" && index + 1 < argc)
+                {
+                    tokenFilePath = std::filesystem::path(argv[++index]);
+                    decodeTokenFile = true;
+                }
+                else if (argument == "--token-count" && index + 1 < argc)
+                {
+                    tokenCount = static_cast<std::size_t>(std::stoull(argv[++index]));
+                }
                 else if (argument == "--help" || argument == "-h")
                 {
                     PrintUsage();
@@ -72,10 +126,16 @@ int main(int argc, char** argv)
         }
 
         const Mina::Tokenizer::SharedTokenizer tokenizer = Mina::Tokenizer::SharedTokenizer::LoadFromFile(modelPath);
-        const std::vector<int> tokenIds = tokenizer.Encode(text);
+        const std::vector<int> tokenIds =
+            decodeTokenFile
+                ? ReadTokenFile(tokenFilePath, tokenCount)
+                : tokenizer.Encode(text);
         const std::vector<std::string> tokenPieces = tokenizer.DescribeTokens(tokenIds);
 
-        std::cout << "normalized: " << Mina::Tokenizer::NormalizeForTokenizer(text) << '\n';
+        if (!decodeTokenFile)
+        {
+            std::cout << "normalized: " << Mina::Tokenizer::NormalizeForTokenizer(text) << '\n';
+        }
         std::cout << "decoded: " << tokenizer.Decode(tokenIds) << '\n';
         std::cout << "vocab_size: " << tokenizer.GetVocabSize() << '\n';
         std::cout << "special_tokens:";

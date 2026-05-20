@@ -28,6 +28,7 @@ endif()
 add_library(mina_shared_tokenizer
     src/tokenizer/ParquetCorpusIngestion.cpp
     src/tokenizer/SharedTokenizer.cpp
+    src/tokenizer/TokenConversionPipeline.cpp
     src/tokenizer/TokenizerPipeline.cpp
 )
 
@@ -80,10 +81,26 @@ target_link_libraries(tokenizer_parquet_ingest_tool
         mina_shared_tokenizer
 )
 
+add_executable(tokenizer_convert_tool
+    src/tokenizer/TokenizerConvertTool.cpp
+)
+target_link_libraries(tokenizer_convert_tool
+    PRIVATE
+        mina_shared_tokenizer
+)
+
 add_executable(tokenizer_tests
     tests/tokenizer/TokenizerTests.cpp
 )
 target_link_libraries(tokenizer_tests
+    PRIVATE
+        mina_shared_tokenizer
+)
+
+add_executable(token_conversion_tests
+    tests/tokenizer/TokenConversionTests.cpp
+)
+target_link_libraries(token_conversion_tests
     PRIVATE
         mina_shared_tokenizer
 )
@@ -96,4 +113,12 @@ add_test(
         ${CMAKE_COMMAND} -E env
             "PATH=${CMAKE_CURRENT_BINARY_DIR}/Debug;${CMAKE_CURRENT_SOURCE_DIR}/vcpkg_installed/x64-windows/debug/bin;${CMAKE_CURRENT_SOURCE_DIR}/vcpkg_installed/x64-windows/bin;$ENV{PATH}"
             $<TARGET_FILE:tokenizer_tests>
+)
+
+add_test(
+    NAME token_conversion_tests
+    COMMAND
+        ${CMAKE_COMMAND} -E env
+            "PATH=${CMAKE_CURRENT_BINARY_DIR}/Debug;${CMAKE_CURRENT_SOURCE_DIR}/vcpkg_installed/x64-windows/debug/bin;${CMAKE_CURRENT_SOURCE_DIR}/vcpkg_installed/x64-windows/bin;$ENV{PATH}"
+            $<TARGET_FILE:token_conversion_tests>
 )
